@@ -1036,22 +1036,15 @@
                 showToast('Error al cargar música', 'error');
             });
             
-            // Preload
-            music.load();
+            // Add canplay event
+            music.addEventListener('canplay', function() {
+                console.log('Music can play now');
+            });
         }
         
         function toggleMusic() {
             if (!music) {
                 showToast('Error: reproductor no encontrado', 'error');
-                return;
-            }
-            
-            // Check if src is loaded
-            if (!music.src || music.src === window.location.href) {
-                // Try to reload
-                music.load();
-                showToast('Cargando música...', 'info');
-                setTimeout(() => toggleMusic(), 500);
                 return;
             }
             
