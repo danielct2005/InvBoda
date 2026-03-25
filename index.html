@@ -964,11 +964,6 @@
                 <span class="music-label" id="musicLabel">Música</span>
             </div>
             
-            <!-- Audio Element - Replace with your own music URL if desired -->
-            <!-- To change the music, replace the src below with your own URL -->
-            <!-- Free romantic music options (Pixabay - royalty free): -->
-            <!-- Agrega tu música aquí: <source src="TU_URL_DE_MUSICA.mp3" type="audio/mpeg"> -->
-            <audio id="backgroundMusic" loop preload="auto"></audio>
         </section>
 
         <!-- PHOTOS SECTION -->
@@ -1061,12 +1056,11 @@
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRxdHZuaWhjaGNvbWdkbmt6d3ViIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzg4OTc0MDAsImV4cCI6MjA1NDQ3MzQwMH0.M9L4LWi6VatLIXjJbjOsS6A2H-YGPhT6C4f6dSPB2L8';
         const BUCKET_NAME = 'wedding-photos';
         
-        var dbClient;
-        
-        // Initialize Supabase
-        function initSupabase() {
+        // Initialize Supabase - avoiding global variable conflict
+        function initSupabaseLib() {
+            // The library creates a global 'supabase' object
             if (typeof window.supabase === 'undefined') {
-                console.log('⚠️ Supabase no cargado. Las fotos se guardarán solo localmente.');
+                console.log('⚠️ Supabase no cargado. Fotos en modo local.');
                 return null;
             }
             return window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
@@ -1075,7 +1069,7 @@
         // Photo handling
         let photos = [];
         let isUploading = false;
-        let supabase = null;
+        let supabaseLibClient = null;
 
         // Show toast notification
         function showToast(message, type = 'info') {
@@ -1101,7 +1095,7 @@
         // Load photos from Supabase or localStorage
         async function loadPhotos() {
             try {
-                if (!supabase) {
+                if (!supabaseLibClient) {
                     // Local only
                     const saved = localStorage.getItem('bodaPhotos');
                     if (saved) {
@@ -1109,7 +1103,7 @@
                     }
                 } else {
                     // Try to load from Supabase
-                    const { data, error } = await supabase
+                    const { data, error } = await supabaseLibClient
                         .storage
                         .from(BUCKET_NAME)
                         .list();
@@ -1123,7 +1117,7 @@
                         // Get public URLs for each file
                         photos = await Promise.all(
                             data.map(async (file) => {
-                                const { data: { publicUrl } } = supabase
+                                const { data: { publicUrl } } = supabaseLibClient
                                     .storage
                                     .from(BUCKET_NAME)
                                     .getPublicUrl(file.name);
@@ -1164,7 +1158,7 @@
             document.getElementById('uploadBtn').disabled = true;
 
             try {
-                if (!supabase) {
+                if (!supabaseLibClient) {
                     // Local storage only mode
                     for (const file of Array.from(files)) {
                         if (file.type.startsWith('image/')) {
@@ -1287,7 +1281,7 @@
 
         // Initialize
         document.addEventListener('DOMContentLoaded', async () => {
-            supabase = initSupabase();
+            supabaseLibClient = initSupabaseLib();
             await loadPhotos();
         });
 
