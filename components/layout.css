@@ -1,6 +1,23 @@
-/* Layout - Section-specific Styles */
+/**
+ * =============================================================================
+ * components/layout.css - Estilos de Layout y Secciones
+ * =============================================================================
+ * Este archivo contiene los estilos específicos para cada sección
+ * de la invitación de boda: invitación, hero, mensaje, detalles,
+ * ubicación, cuenta regresiva, código de vestimenta, footer y galería.
+ */
 
-/* Invitation Section */
+/**
+ * =============================================================================
+ * SECCIÓN DE INVITACIÓN (Invitation Section)
+ * =============================================================================
+ */
+
+/**
+ * Contenedor principal de la sección de invitación
+ * Flexbox para centrar contenido verticalmente
+ * @selector .invitation-section - Sección principal de la invitación
+ */
 .invitation-section {
     flex: 1;
     padding: 20px 15px;
@@ -10,6 +27,11 @@
     animation: fadeIn 1.2s ease;
 }
 
+/**
+ * Tarjeta de invitación principal
+ * Contenedor con estilo de tarjeta vintage
+ * @selector .invitation-card - Tarjeta principal con toda la información
+ */
 .invitation-card {
     background: var(--bg-card);
     border-radius: 2px;
@@ -25,12 +47,28 @@
     transition: background var(--transition-speed) ease;
 }
 
+/**
+ * Header decorativo de la tarjeta
+ * Línea de gradiente en la parte superior
+ * @selector .card-header - Barra decorativa superior
+ */
 .card-header {
     height: 5px;
     background: linear-gradient(90deg, var(--vintage-brown) 0%, var(--vintage-gold) 50%, var(--vintage-brown) 100%);
 }
 
-/* Hero Section */
+/**
+ * =============================================================================
+ * SECCIÓN HERO (Hero Section)
+ * =============================================================================
+ * La sección superior con nombres de los novios y fecha
+ */
+
+/**
+ * Sección Hero
+ * Contains los nombres de los novios y la fecha
+ * @selector .hero-section - Sección de encabezamiento principal
+ */
 .hero-section {
     text-align: center;
     padding: 30px 20px 20px;
@@ -39,6 +77,10 @@
     transition: background var(--transition-speed) ease;
 }
 
+/**
+ * Línea decorativa con icono central
+ * @selector .ornament-line - Línea ornamental con icono
+ */
 .ornament-line {
     display: flex;
     align-items: center;
@@ -47,6 +89,10 @@
     margin-bottom: 15px;
 }
 
+/**
+ * Líneas decorativas a cada lado del icono
+ * @selector .ornament-line::before, .ornament-line::after - Líneas horizontales
+ */
 .ornament-line::before,
 .ornament-line::after {
     content: '';
@@ -55,11 +101,20 @@
     background: var(--vintage-sepia);
 }
 
+/**
+ * Icono decorativo central
+ * @selector .ornament-icon - Estrella/diamante decorativo
+ */
 .ornament-icon {
     color: var(--vintage-gold);
     font-size: 1rem;
 }
 
+/**
+ * Texto de invitación
+ * Mensaje que precede a los nombres
+ * @selector .invite-text - Texto "Con grata dicha..."
+ */
 .invite-text {
     font-family: 'Cormorant Garamond', serif;
     font-size: 0.8rem;
@@ -70,6 +125,11 @@
     font-style: italic;
 }
 
+/**
+ * Nombres de los novios
+ * Título principal con los nombres
+ * @selector .couple-names - Nombres de Daniel y Fernanda
+ */
 .couple-names {
     font-family: 'Libre Baskerville', serif;
     font-size: 2.2rem;
@@ -79,6 +139,10 @@
     margin-bottom: 8px;
 }
 
+/**
+ * Símbolo ampersand entre nombres
+ * @selector .couple-names .ampersand - El símbolo "&"
+ */
 .couple-names .ampersand {
     display: block;
     font-size: 1.2rem;
@@ -88,6 +152,10 @@
     margin: 6px 0;
 }
 
+/**
+ * Visualización de la fecha de la boda
+ * @selector .wedding-date-display - Recuadro con la fecha
+ */
 .wedding-date-display {
     display: inline-block;
     border: 1px solid var(--vintage-sepia);
@@ -99,7 +167,16 @@
     letter-spacing: 1px;
 }
 
-/* Love Message */
+/**
+ * =============================================================================
+ * MENSAJE DE AMOR (Love Message)
+ * =============================================================================
+ */
+
+/**
+ * Contenedor del mensaje romántico
+ * @selector .love-message - Sección con mensaje de los novios
+ */
 .love-message {
     padding: 20px 18px;
     text-align: center;
@@ -111,6 +188,10 @@
     transition: background var(--transition-speed) ease, border-color var(--transition-speed) ease;
 }
 
+/**
+ * Decoraciones de comillas/flores en esquinas
+ * @selector .love-message::before, .love-message::after - Elementos decorativos
+ */
 .love-message::before,
 .love-message::after {
     content: '❧';
@@ -120,9 +201,25 @@
     opacity: 0.4;
 }
 
-.love-message::before { top: 8px; left: 10px; }
-.love-message::after { bottom: 8px; right: 10px; transform: rotate(180deg); }
+/**
+ * Posición de la decoración superior izquierda
+ */
+.love-message::before { 
+    top: 8px; left: 10px; 
+}
 
+/**
+ * Posición de la decoración inferior derecha (rotada)
+ */
+.love-message::after { 
+    bottom: 8px; right: 10px; 
+    transform: rotate(180deg); 
+}
+
+/**
+ * Párrafos del mensaje de amor
+ * @selector .love-message p - Texto del mensaje romántico
+ */
 .love-message p {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1rem;
@@ -131,6 +228,10 @@
     line-height: 1.6;
 }
 
+/**
+ * Firma de los novios
+ * @selector .signature - Texto "Con todo nuestro amor"
+ */
 .signature {
     font-family: 'Libre Baskerville', serif;
     font-size: 0.9rem;
@@ -139,7 +240,17 @@
     font-style: italic;
 }
 
-/* Details Section */
+/**
+ * =============================================================================
+ * SECCIÓN DE DETALLES (Details Section)
+ * =============================================================================
+ * Información sobre la ceremonia
+ */
+
+/**
+ * Sección de detalles de la ceremonia
+ * @selector .details-section - Información de fecha y hora
+ */
 .details-section {
     padding: 25px 18px;
     text-align: center;
@@ -148,6 +259,10 @@
     transition: background var(--transition-speed) ease;
 }
 
+/**
+ * Títulos de sección
+ * @selector .section-title - Títulos como "La Ceremonia", "Ubicación"
+ */
 .section-title {
     font-family: 'Libre Baskerville', serif;
     font-size: 1.3rem;
@@ -157,6 +272,10 @@
     display: inline-block;
 }
 
+/**
+ * Línea decorativa debajo del título
+ * @selector .section-title::after - Subtítulo decorativo
+ */
 .section-title::after {
     content: '';
     position: absolute;
@@ -168,6 +287,10 @@
     background: var(--vintage-gold);
 }
 
+/**
+ * Etiqueta del día de la semana
+ * @selector .date-highlight .date-label - "Lunes"
+ */
 .date-highlight .date-label {
     font-family: 'Cormorant Garamond', serif;
     font-size: 0.8rem;
@@ -177,19 +300,36 @@
     margin-bottom: 4px;
 }
 
+/**
+ * Fecha principal
+ * @selector .date-highlight .date-main - "30 de Diciembre, 2035"
+ */
 .date-highlight .date-main {
     font-family: 'Libre Baskerville', serif;
     font-size: 1.6rem;
     font-weight: 600;
 }
 
+/**
+ * Hora de la ceremonia
+ * @selector .date-highlight .time - "A las 16:00 horas"
+ */
 .date-highlight .time {
     font-size: 0.95rem;
     margin-top: 6px;
     opacity: 0.9;
 }
 
-/* Location Section */
+/**
+ * =============================================================================
+ * SECCIÓN DE UBICACIÓN (Location Section)
+ * =============================================================================
+ */
+
+/**
+ * Sección de ubicación
+ * @selector .location-section - Información del lugar
+ */
 .location-section {
     padding: 20px 18px 25px;
     text-align: center;
@@ -199,6 +339,10 @@
     transition: background var(--transition-speed) ease, border-color var(--transition-speed) ease;
 }
 
+/**
+ * Nombre del lugar
+ * @selector .location-name - "Colico Norte"
+ */
 .location-name {
     font-family: 'Libre Baskerville', serif;
     font-size: 1.2rem;
@@ -206,6 +350,10 @@
     margin-bottom: 8px;
 }
 
+/**
+ * Dirección del lugar
+ * @selector .location-address - Descripción de la ubicación
+ */
 .location-address {
     color: var(--text-secondary);
     font-size: 0.9rem;
@@ -213,7 +361,16 @@
     font-style: italic;
 }
 
-/* Dress Code */
+/**
+ * =============================================================================
+ * CÓDIGO DE VESTIMENTA (Dress Code)
+ * =============================================================================
+ */
+
+/**
+ * Sección de código de vestimenta
+ * @selector .dress-code - Sección de dress code
+ */
 .dress-code {
     background: var(--vintage-rose);
     padding: 16px 18px;
@@ -223,6 +380,10 @@
     transition: background var(--transition-speed) ease, border-color var(--transition-speed) ease;
 }
 
+/**
+ * Título del dress code
+ * @selector .dress-code-title - "Código de Vestimenta"
+ */
 .dress-code-title {
     font-family: 'Libre Baskerville', serif;
     font-size: 1rem;
@@ -230,12 +391,25 @@
     margin-bottom: 6px;
 }
 
+/**
+ * Texto del dress code
+ * @selector .dress-code-text - Descripción del dress code
+ */
 .dress-code-text {
     font-size: 0.9rem;
     color: var(--text-primary);
 }
 
-/* Countdown */
+/**
+ * =============================================================================
+ * CUENTA REGRESIVA (Countdown)
+ * =============================================================================
+ */
+
+/**
+ * Sección de cuenta regresiva
+ * @selector .countdown-section - Temporizador hacia la boda
+ */
 .countdown-section {
     background: var(--bg-card);
     padding: 20px;
@@ -245,6 +419,11 @@
     transition: background var(--transition-speed) ease, border-color var(--transition-speed) ease;
 }
 
+/**
+ * Contenedor de la cuenta regresiva
+ * Flexbox para distribuir los 4 elementos
+ * @selector .countdown - Contenedor de días/horas/minutos/segundos
+ */
 .countdown {
     display: flex;
     justify-content: center;
@@ -252,6 +431,10 @@
     margin-top: 10px;
 }
 
+/**
+ * Cada unidad de tiempo
+ * @selector .countdown-item - Un cuadro individual del temporizador
+ */
 .countdown-item {
     display: flex;
     flex-direction: column;
@@ -264,6 +447,10 @@
     transition: background var(--transition-speed) ease, border-color var(--transition-speed) ease;
 }
 
+/**
+ * Número grande del contador
+ * @selector .countdown-number - El número (días, horas, etc)
+ */
 .countdown-number {
     font-family: 'Libre Baskerville', serif;
     font-size: 1.5rem;
@@ -271,6 +458,10 @@
     font-weight: bold;
 }
 
+/**
+ * Etiqueta de la unidad
+ * @selector .countdown-label - "Días", "Horas", etc.
+ */
 .countdown-label {
     font-size: 0.7rem;
     color: var(--text-secondary);
@@ -278,7 +469,16 @@
     margin-top: 2px;
 }
 
-/* RSVP Section */
+/**
+ * =============================================================================
+ * SECCIÓN RSVP (RSVP Section)
+ * =============================================================================
+ */
+
+/**
+ * Sección de confirmación de asistencia
+ * @selector .rsvp-section - Botones de confirmación
+ */
 .rsvp-section {
     padding: 20px 18px;
     text-align: center;
@@ -286,6 +486,10 @@
     transition: background var(--transition-speed) ease;
 }
 
+/**
+ * Título de RSVP
+ * @selector .rsvp-title - "Confirmar Asistencia"
+ */
 .rsvp-title {
     font-family: 'Libre Baskerville', serif;
     font-size: 1.3rem;
@@ -293,6 +497,10 @@
     margin-bottom: 8px;
 }
 
+/**
+ * Texto de RSVP
+ * @selector .rsvp-text - Instrucciones de confirmación
+ */
 .rsvp-text {
     color: var(--text-secondary);
     margin-bottom: 18px;
@@ -300,6 +508,10 @@
     font-size: 0.9rem;
 }
 
+/**
+ * Contenedor de botones RSVP
+ * @selector .rsvp-buttons - Grupo de botones de confirmación
+ */
 .rsvp-buttons {
     display: flex;
     flex-direction: column;
@@ -307,6 +519,10 @@
     align-items: center;
 }
 
+/**
+ * Información de contacto
+ * @selector .contact-info - Teléfono y email de los novios
+ */
 .contact-info {
     margin-top: 18px;
     padding-top: 15px;
@@ -315,12 +531,25 @@
     color: var(--text-secondary);
 }
 
+/**
+ * Iconos en información de contacto
+ * @selector .contact-info i - Iconos de teléfono/email
+ */
 .contact-info i {
     color: var(--vintage-red);
     margin-right: 4px;
 }
 
-/* Gifts Section */
+/**
+ * =============================================================================
+ * SECCIÓN DE REGALOS (Gifts Section)
+ * =============================================================================
+ */
+
+/**
+ * Sección de regalos
+ * @selector .gifts-section - Opciones de regalo
+ */
 .gifts-section {
     background: var(--bg-card);
     padding: 35px 20px;
@@ -329,6 +558,10 @@
     transition: background var(--transition-speed) ease, border-color var(--transition-speed) ease;
 }
 
+/**
+ * Título de regalos
+ * @selector .gifts-title - "Regalos"
+ */
 .gifts-title {
     font-family: 'Libre Baskerville', serif;
     font-size: 1.5rem;
@@ -336,11 +569,19 @@
     margin-bottom: 15px;
 }
 
+/**
+ * Icono del título de regalos
+ * @selector .gifts-title i - Icono de regalo
+ */
 .gifts-title i {
     color: var(--vintage-red);
     margin-right: 8px;
 }
 
+/**
+ * Texto introductorio de regalos
+ * @selector .gifts-text - Mensaje sobre regalos
+ */
 .gifts-text {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.1rem;
@@ -350,10 +591,18 @@
     line-height: 1.6;
 }
 
+/**
+ * Contenedor de opciones de regalo
+ * @selector .gift-options - Wrapper de opciones
+ */
 .gift-options {
     margin: 15px 0;
 }
 
+/**
+ * Opción individual de regalo
+ * @selector .gift-option - Una opción de regalo
+ */
 .gift-option {
     display: flex;
     align-items: center;
@@ -370,11 +619,19 @@
     transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
 }
 
+/**
+ * Icono de opción de regalo
+ * @selector .gift-option i - Icono de cada opción
+ */
 .gift-option i {
     color: var(--vintage-red);
     font-size: 1.2rem;
 }
 
+/**
+ * Información de cuenta bancaria
+ * @selector .gift-info - Datos para transferencia
+ */
 .gift-info {
     margin-top: 15px;
     padding: 15px;
@@ -386,6 +643,10 @@
     transition: background var(--transition-speed) ease;
 }
 
+/**
+ * Párrafos en información de regalo
+ * @selector .gift-info p - Datos bancarios
+ */
 .gift-info p {
     font-family: 'Cormorant Garamond', serif;
     font-size: 0.95rem;
@@ -393,11 +654,24 @@
     margin: 5px 0;
 }
 
+/**
+ * Texto bold en información de regalo
+ * @selector .gift-info strong - Etiquetas como "Nombre:", "Banco:"
+ */
 .gift-info strong {
     color: var(--vintage-brown);
 }
 
-/* Footer */
+/**
+ * =============================================================================
+ * PIE DE PÁGINA (Footer)
+ * =============================================================================
+ */
+
+/**
+ * Pie de página de la invitación
+ * @selector .footer - Footer con cita y hashtag
+ */
 .footer {
     background: var(--vintage-brown);
     color: var(--vintage-cream);
@@ -405,6 +679,10 @@
     padding: 20px;
 }
 
+/**
+ * Texto de la cita en el footer
+ * @selector .footer-text - Cita sobre el amor
+ */
 .footer-text {
     font-family: 'Cormorant Garamond', serif;
     font-size: 0.95rem;
@@ -413,6 +691,10 @@
     line-height: 1.6;
 }
 
+/**
+ * Hashtag de la boda
+ * @selector .hashtag - #DanielYFernanda2035
+ */
 .hashtag {
     font-family: 'Libre Baskerville', serif;
     font-size: 1.1rem;
@@ -420,7 +702,16 @@
     color: var(--vintage-gold);
 }
 
-/* Photos Section */
+/**
+ * =============================================================================
+ * SECCIÓN DE FOTOS (Photos Section)
+ * =============================================================================
+ */
+
+/**
+ * Sección de galería de fotos
+ * @selector .photos-section - Grid de fotos compartidas
+ */
 .photos-section {
     background: var(--bg-section);
     border-top: 3px solid var(--border-color);
@@ -428,6 +719,11 @@
     transition: background var(--transition-speed) ease, border-color var(--transition-speed) ease;
 }
 
+/**
+ * Encabezado de la sección de fotos
+ * Contenedor flexible para título y botón
+ * @selector .photos-header - Título y botón de subir
+ */
 .photos-header {
     display: flex;
     flex-direction: column;
@@ -436,6 +732,10 @@
     gap: 15px;
 }
 
+/**
+ * Título de la sección de fotos
+ * @selector .photos-title - "Comparte tus Recuerdos"
+ */
 .photos-title {
     font-family: 'Libre Baskerville', serif;
     font-size: 1.3rem;
@@ -446,16 +746,29 @@
     text-align: center;
 }
 
+/**
+ * Input de archivo oculto
+ * @selector #photoInput - Input para seleccionar archivos
+ */
 #photoInput {
     display: none;
 }
 
+/**
+ * Grid de fotos
+ * Distribución de las miniaturas (3 columnas)
+ * @selector .photos-grid - Contenedor de fotos en grid
+ */
 .photos-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
 }
 
+/**
+ * Item individual de foto
+ * @selector .photo-item - Cada miniatura de foto
+ */
 .photo-item {
     aspect-ratio: 1;
     border-radius: 2px;
@@ -471,25 +784,42 @@
     transition: background var(--transition-speed) ease, border-color var(--transition-speed) ease;
 }
 
+/**
+ * Imagen dentro del item de foto
+ * @selector .photo-item img - La imagen en miniatura
+ */
 .photo-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
+/**
+ * Item de foto vacío (placeholder)
+ * @selector .photo-item.empty - Cuadro cuando no hay foto
+ */
 .photo-item.empty {
     color: var(--vintage-sepia);
     font-size: 2rem;
     opacity: 0.3;
 }
 
-/* Photo Actions (View/Download buttons) */
+/**
+ * =============================================================================
+ * BOTONES DE ACCIÓN EN FOTOS (Photo Actions)
+ * =============================================================================
+ * Botones que aparecen al pasar el mouse sobre una foto
+ */
+
+/**
+ * Contenedor de botones de acción
+ * Aparece al hacer hover sobre la foto
+ * @selector .photo-actions - Overlay con botones view/download
+ */
 .photo-actions {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: 0; left: 0;
+    right: 0; bottom: 0;
     background: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
@@ -499,10 +829,18 @@
     transition: opacity 0.3s ease;
 }
 
+/**
+ * Mostrar botones al hacer hover
+ * @selector .photo-item:hover .photo-actions - Estado visible
+ */
 .photo-item:hover .photo-actions {
     opacity: 1;
 }
 
+/**
+ * Botón individual de acción
+ * @selector .photo-action-btn - Botones view y download
+ */
 .photo-action-btn {
     width: 36px;
     height: 36px;
@@ -518,17 +856,29 @@
     transition: all 0.2s ease;
 }
 
+/**
+ * Hover del botón de acción
+ * @selector .photo-action-btn:hover - Efecto al pasar mouse
+ */
 .photo-action-btn:hover {
     transform: scale(1.1);
     background: var(--vintage-gold);
     color: var(--vintage-brown);
 }
 
+/**
+ * Hover específico para botón de descarga
+ * @selector .photo-action-btn.download:hover - Color verde para download
+ */
 .photo-action-btn.download:hover {
     background: var(--vintage-green);
     color: #fff;
 }
 
+/**
+ * Mensaje cuando no hay fotos
+ * @selector .empty-message - Texto instructivo
+ */
 .empty-message {
     text-align: center;
     padding: 20px;
@@ -537,14 +887,22 @@
     font-size: 0.9rem;
 }
 
-/* Photo Modal */
+/**
+ * =============================================================================
+ * MODAL DE FOTO (Photo Modal)
+ * =============================================================================
+ * Modal para ver fotos en pantalla completa
+ */
+
+/**
+ * Modal de visualización de foto
+ * @selector .photo-modal - Overlay de foto ampliada
+ */
 .photo-modal {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     background: rgba(0, 0, 0, 0.9);
     z-index: 2000;
     justify-content: center;
@@ -552,10 +910,18 @@
     padding: 20px;
 }
 
+/**
+ * Estado activo del modal de foto
+ * @selector .photo-modal.active - Modal visible
+ */
 .photo-modal.active {
     display: flex;
 }
 
+/**
+ * Imagen dentro del modal
+ * @selector .photo-modal img - Foto ampliada
+ */
 .photo-modal img {
     max-width: 100%;
     max-height: 90vh;
@@ -563,6 +929,10 @@
     border: 3px solid var(--vintage-gold);
 }
 
+/**
+ * Botón de cerrar modal de foto
+ * @selector .close-photo-modal - Botón X para cerrar
+ */
 .close-photo-modal {
     position: absolute;
     top: 20px;
@@ -578,12 +948,20 @@
     transition: all var(--transition-speed) ease;
 }
 
+/**
+ * Hover del botón de cerrar
+ * @selector .close-photo-modal:hover - Estado al pasar mouse
+ */
 .close-photo-modal:hover {
     background: var(--vintage-red);
     color: white;
     border-color: var(--vintage-red);
 }
 
+/**
+ * Botón de descargar en modal de foto
+ * @selector .download-photo-modal - Botón de descarga
+ */
 .download-photo-modal {
     position: absolute;
     top: 20px;
@@ -602,6 +980,10 @@
     transition: all var(--transition-speed) ease;
 }
 
+/**
+ * Hover del botón de descargar
+ * @selector .download-photo-modal:hover - Estado al pasar mouse
+ */
 .download-photo-modal:hover {
     background: #4a7a4a;
     transform: scale(1.05);

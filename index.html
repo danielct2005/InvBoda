@@ -297,10 +297,10 @@
                 <h2 class="photos-title">
                     <i class="fas fa-camera-retro"></i> Comparte tus Recuerdos
                 </h2>
-                <button class="btn-camera" id="uploadBtn" onclick="document.getElementById('photoInput').click()">
+                <label for="photoInput" class="btn-camera" id="uploadBtn">
                     <i class="fas fa-camera"></i> Subir Fotos
-                </button>
-                <input type="file" id="photoInput" accept="image/*" multiple onchange="handlePhotoUpload(event)">
+                </label>
+                <input type="file" id="photoInput" accept="image/*" multiple capture="environment" onchange="handlePhotoUpload(event)">
             </div>
             
             <div class="photos-grid" id="photosGrid">
@@ -553,10 +553,16 @@
 
         // Handle photo upload - local storage only
         async function handlePhotoUpload(event) {
+            console.log('Upload triggered', event);
             if (isUploading) return;
             
             const files = event.target.files;
-            if (!files || files.length === 0) return;
+            console.log('Files:', files);
+            if (!files || files.length === 0) {
+                console.log('No files selected');
+                showToast('No se seleccionó ninguna foto', 'error');
+                return;
+            }
 
             isUploading = true;
             document.getElementById('uploadBtn').disabled = true;
@@ -573,10 +579,17 @@
                                     image: e.target.result,
                                     time: new Date().toLocaleDateString('es-CL')
                                 });
-                                localStorage.setItem('bodaPhotos', JSON.stringify(photos));
+                                try {
+                                    localStorage.setItem('bodaPhotos', JSON.stringify(photos));
+                                } catch (e) {
+                                    console.log('localStorage full, using session');
+                                }
                                 resolve();
                             };
-                            reader.onerror = reject;
+                            reader.onerror = (e) => {
+                                console.log('Reader error:', e);
+                                reject(e);
+                            }
                             reader.readAsDataURL(file);
                         });
                     }
