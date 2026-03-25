@@ -431,75 +431,6 @@
             color: var(--vintage-gold);
         }
 
-        /* ====== MUSIC PLAYER ====== */
-        .music-player {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            z-index: 1000;
-            background: var(--vintage-brown);
-            padding: 10px 15px;
-            border-radius: 25px;
-            box-shadow: 3px 3px 0 var(--vintage-sepia);
-            border: 2px solid var(--vintage-gold);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .music-player:hover {
-            transform: scale(1.05);
-        }
-
-        .music-player.playing {
-            background: var(--vintage-gold);
-        }
-
-        .music-player.playing .music-btn {
-            color: var(--vintage-brown);
-        }
-
-        .music-player.playing .music-label {
-            color: var(--vintage-brown);
-        }
-
-        .music-btn {
-            width: 35px;
-            height: 35px;
-            border: none;
-            border-radius: 50%;
-            background: transparent;
-            color: var(--vintage-cream);
-            font-size: 1.1rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .music-btn:hover {
-            transform: scale(1.1);
-        }
-
-        .music-label {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 0.85rem;
-            color: var(--vintage-cream);
-            font-style: italic;
-        }
-
-        @keyframes musicPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        .music-player.playing .music-btn i {
-            animation: musicPulse 2s ease-in-out infinite;
-        }
-
         /* ====== PHOTOS SECTION ====== */
         .photos-section {
             background: var(--vintage-paper);
@@ -833,11 +764,6 @@
             .photos-section {
                 padding-bottom: calc(20px + env(safe-area-inset-bottom));
             }
-            
-            .music-player {
-                bottom: calc(20px + env(safe-area-inset-bottom));
-                right: calc(20px + env(safe-area-inset-right));
-            }
         }
     </style>
 </head>
@@ -955,15 +881,6 @@
                     <div class="hashtag">#DanielYFernanda2026</div>
                 </div>
             </div>
-            
-            <!-- Music Player -->
-            <div class="music-player" id="musicPlayer">
-                <button class="music-btn" id="musicBtn" onclick="toggleMusic()" title="Música de fondo">
-                    <i class="fas fa-music" id="musicIcon"></i>
-                </button>
-                <span class="music-label" id="musicLabel">Música</span>
-            </div>
-            
         </section>
 
         <!-- PHOTOS SECTION -->
@@ -1015,42 +932,6 @@
     </div>
 
     <script>
-        // ====== MUSIC PLAYER ======
-        let isMusicPlaying = false;
-        const music = document.getElementById('backgroundMusic');
-        const musicPlayer = document.getElementById('musicPlayer');
-        const musicIcon = document.getElementById('musicIcon');
-        
-        // Set volume
-        music.volume = 0.4;
-        
-        function toggleMusic() {
-            if (isMusicPlaying) {
-                music.pause();
-                musicIcon.className = 'fas fa-music';
-                musicPlayer.classList.remove('playing');
-                isMusicPlaying = false;
-            } else {
-                // Try to play - may need user interaction first
-                const playPromise = music.play();
-                if (playPromise !== undefined) {
-                    playPromise.then(() => {
-                        musicIcon.className = 'fas fa-pause';
-                        musicPlayer.classList.add('playing');
-                        isMusicPlaying = true;
-                    }).catch(error => {
-                        console.log('Error playing music:', error);
-                        showToast('Toca el botón para reproducir música', 'info');
-                    });
-                }
-            }
-        }
-        
-        // Handle music ending (for looping)
-        music.addEventListener('ended', function() {
-            music.play();
-        });
-
         // ====== SUPABASE CONFIGURATION ======
         const SUPABASE_URL = 'https://dqtvnihchcomgdnkzwub.supabase.co';
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRxdHZuaWhjaGNvbWdkbmt6d3ViIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzg4OTc0MDAsImV4cCI6MjA1NDQ3MzQwMH0.M9L4LWi6VatLIXjJbjOsS6A2H-YGPhT6C4f6dSPB2L8';
