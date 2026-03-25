@@ -1065,20 +1065,21 @@
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRxdHZuaWhjaGNvbWdkbmt6d3ViIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzg4OTc0MDAsImV4cCI6MjA1NDQ3MzQwMH0.M9L4LWi6VatLIXjJbjOsS6A2H-YGPhT6C4f6dSPB2L8';
         const BUCKET_NAME = 'wedding-photos';
         
-        let supabase;
+        var supabaseClient;
         
         // Initialize Supabase
         function initSupabase() {
-            if (SUPABASE_URL === 'YOUR_SUPABASE_URL') {
-                console.log('⚠️ Supabase no configurado. Las fotos se guardarán solo localmente.');
+            if (typeof supabase === 'undefined') {
+                console.log('⚠️ Supabase no cargado. Las fotos se guardarán solo localmente.');
                 return null;
             }
-            return window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+            return supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
         }
 
         // Photo handling
         let photos = [];
         let isUploading = false;
+        let supabase = supabaseClient;
 
         // Show toast notification
         function showToast(message, type = 'info') {
@@ -1299,6 +1300,7 @@
         window.handlePhotoUpload = handlePhotoUpload;
         window.viewPhoto = viewPhoto;
         window.closePhotoModal = closePhotoModal;
+        window.supabase = supabase;
     </script>
 </body>
 </html>
