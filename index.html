@@ -409,6 +409,93 @@
             margin-right: 4px;
         }
 
+        /* ====== GIFTS SECTION ====== */
+        .gifts-section {
+            background: var(--vintage-cream);
+            padding: 35px 20px;
+            text-align: center;
+            border-top: 1px solid var(--vintage-sepia);
+        }
+
+        .gifts-title {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.5rem;
+            color: var(--vintage-brown);
+            margin-bottom: 15px;
+        }
+
+        .gifts-title i {
+            color: var(--vintage-red);
+            margin-right: 8px;
+        }
+
+        .gifts-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 500px;
+            margin: 0 auto 20px;
+            line-height: 1.6;
+        }
+
+        .gift-options {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .gift-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 25px;
+            border: 2px solid var(--vintage-brown);
+            background: transparent;
+            color: var(--vintage-brown);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 2px 2px 0 rgba(92, 64, 51, 0.15);
+            width: 80%;
+            max-width: 280px;
+        }
+
+        .gift-btn:hover {
+            background: var(--vintage-brown);
+            color: var(--vintage-cream);
+        }
+
+        .gift-btn i {
+            font-size: 1.2rem;
+        }
+
+        .gift-info {
+            margin-top: 15px;
+            padding: 15px;
+            background: var(--vintage-paper);
+            border-radius: 4px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .gift-info p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            margin: 5px 0;
+        }
+
+        .gift-info strong {
+            color: var(--vintage-brown);
+        }
+
         .footer {
             background: var(--vintage-brown);
             color: var(--vintage-cream);
@@ -947,6 +1034,35 @@
                     </div>
                 </div>
 
+                <!-- GIFTS SECTION -->
+                <div class="gifts-section">
+                    <h2 class="gifts-title">
+                        <i class="fas fa-gift"></i> Regalos
+                    </h2>
+                    <p class="gifts-text">
+                        Tu presencia en nuestro día es el mejor regalo. 
+                        Si deseas enviarnos un detalle, puedes hacerlo de las siguientes maneras:
+                    </p>
+                    
+                    <div class="gift-options">
+                        <a href="#" class="gift-btn" onclick="showGiftInfo()">
+                            <i class="fas fa-envelope-open-text"></i> Sobre de regalo
+                        </a>
+                        
+                        <a href="#" class="gift-btn" onclick="showGiftInfo()">
+                            <i class="fas fa-university"></i> Transferencia bancaria
+                        </a>
+                    </div>
+                    
+                    <div class="gift-info" id="giftInfo" style="display: none;">
+                        <p><strong>Datos de cuenta:</strong></p>
+                        <p>[Aquí van los datos de tu cuenta bancaria]</p>
+                        <p style="margin-top: 10px; font-size: 0.85rem; color: var(--text-light);">
+                            Para actualizar los datos, contacta a los novios
+                        </p>
+                    </div>
+                </div>
+
                 <div class="footer">
                     <p class="footer-text">
                         "El amor es la fuerza más noble del universo.<br>
@@ -1081,6 +1197,18 @@
         // Photo handling
         let photos = [];
         let isUploading = false;
+
+        // Show gift info
+        function showGiftInfo() {
+            const giftInfo = document.getElementById('giftInfo');
+            if (giftInfo.style.display === 'none') {
+                giftInfo.style.display = 'block';
+                showToast('Datos de cuenta mostrados', 'success');
+            } else {
+                giftInfo.style.display = 'none';
+            }
+            event.preventDefault();
+        }
 
         // Show toast notification
         function showToast(message, type = 'info') {
