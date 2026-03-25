@@ -18,6 +18,7 @@ body {
     color: var(--text-dark);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    text-align: center;
 }
 
 body::before {
@@ -57,4 +58,5 @@ img {
     width: 100%;
     display: flex;
     flex-direction: column;
+    text-align: center;
 }
