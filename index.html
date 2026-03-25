@@ -1029,11 +1029,29 @@
         // Set volume
         if (music) {
             music.volume = 0.4;
+            
+            // Add error handling
+            music.addEventListener('error', function(e) {
+                console.log('Music load error:', music.error);
+                showToast('Error al cargar música', 'error');
+            });
+            
+            // Preload
+            music.load();
         }
         
         function toggleMusic() {
-            if (!music || !music.src) {
-                showToast('Agrega una canción en el código', 'info');
+            if (!music) {
+                showToast('Error: reproductor no encontrado', 'error');
+                return;
+            }
+            
+            // Check if src is loaded
+            if (!music.src || music.src === window.location.href) {
+                // Try to reload
+                music.load();
+                showToast('Cargando música...', 'info');
+                setTimeout(() => toggleMusic(), 500);
                 return;
             }
             
@@ -1051,7 +1069,7 @@
                         isMusicPlaying = true;
                     }).catch(error => {
                         console.log('Error playing music:', error);
-                        showToast('Toca para reproducir música', 'info');
+                        showToast('Haz click para reproducir música', 'info');
                     });
                 }
             }
