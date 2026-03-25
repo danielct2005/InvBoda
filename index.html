@@ -1293,6 +1293,12 @@
             supabase = initSupabase();
             await loadPhotos();
         });
+
+        // Make functions globally accessible
+        window.toggleMusic = toggleMusic;
+        window.handlePhotoUpload = handlePhotoUpload;
+        window.viewPhoto = viewPhoto;
+        window.closePhotoModal = closePhotoModal;
     </script>
 </body>
 </html>
