@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Photos - Comparte los momentos especiales</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="chat-header">
+            <div class="header-content">
+                <div class="couple-info">
+                    <h1>💍 DANIEL Y FERNANDA</h1>
+                    <p class="wedding-date">30 de Diciembre, 2040</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn-invitation" onclick="openInvitation()">
+                        <i class="fas fa-envelope"></i> Ver Invitación
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Chat Area -->
+        <main class="chat-main">
+            <div class="chat-messages" id="chatMessages">
+                <div class="message system">
+                    <div class="message-content">
+                        <i class="fas fa-heart"></i>
+                        <p>¡Bienvenidos a nuestro chat de bodas! 📸</p>
+                        <p class="sub-text">Comparte las fotos que tomes durante nuestra celebración. ¡Cada momento es invaluable para nosotros!</p>
+                    </div>
+                </div>
+                
+                <div class="message system">
+                    <div class="message-content">
+                        <i class="fas fa-camera"></i>
+                        <p>Comparte tus fotos</p>
+                        <p class="sub-text">Haz clic en el botón de cámara para subir tus fotografías</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Photo Grid -->
+            <div class="photo-gallery" id="photoGallery">
+                <h3><i class="fas fa-images"></i> Fotos Compartidas</h3>
+                <div class="photos-grid" id="photosGrid">
+                    <!-- Photos will be added here -->
+                </div>
+            </div>
+        </main>
+
+        <!-- Input Area -->
+        <footer class="chat-input">
+            <div class="input-container">
+                <button class="btn-photo" onclick="document.getElementById('photoInput').click()">
+                    <i class="fas fa-camera"></i>
+                </button>
+                <input type="file" id="photoInput" accept="image/*" multiple hidden onchange="handlePhotoUpload(event)">
+                
+                <input type="text" id="messageInput" placeholder="Escribe un mensaje..." onkeypress="handleKeyPress(event)">
+                
+                <button class="btn-send" onclick="sendMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+            
+            <div class="guest-counter">
+                <i class="fas fa-users"></i>
+                <span>Invitados conectados: <strong id="guestCount">1</strong></span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Invitation Modal -->
+    <div class="modal" id="invitationModal">
+        <div class="modal-content invitation-card">
+            <button class="close-modal" onclick="closeInvitation()">
+                <i class="fas fa-times"></i>
+            </button>
+            <iframe src="invitacion.html" frameborder="0"></iframe>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

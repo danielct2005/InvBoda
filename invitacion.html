@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boda Daniel & Fernada 💍</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Permanent+Marker&family=Courier+New:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: #1a1a2e;
+            min-height: 100vh;
+            color: #fff;
+            line-height: 1.5;
+        }
+
+        /* Wallpaper backgrounds - 90s style Paris */
+        .wallpaper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)),
+                url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1920') center/cover no-repeat;
+            animation: slowZoom 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes slowZoom {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 30px 15px;
+        }
+
+        /* 90s decorative border */
+        .invite-box {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 
+                0 0 30px rgba(255, 105, 180, 0.5),
+                0 0 60px rgba(255, 105, 180, 0.3),
+                inset 0 0 100px rgba(255, 105, 180, 0.1);
+            border: 4px solid;
+            border-image: linear-gradient(45deg, #ff69b4, #ff1493, #ff69b4) 1;
+        }
+
+        /* Vintage header */
+        .header {
+            background: linear-gradient(180deg, #ff69b4 0%, #ff1493 50%, #c71585 100%);
+            padding: 25px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header::before {
+            content: '♥ ♦ ♣ ♠ ♥ ♦ ♣ ♠';
+            position: absolute;
+            top: 5px;
+            left: 0;
+            right: 0;
+            font-size: 10px;
+            color: rgba(255,255,255,0.5);
+            letter-spacing: 8px;
+            overflow: hidden;
+        }
+
+        .header h1 {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 2.8rem;
+            color: #fff;
+            text-shadow: 3px 3px 0 #c71585;
+            margin-bottom: 5px;
+        }
+
+        .header .ampersand {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 2rem;
+            color: #fff;
+            text-shadow: 2px 2px 0 #c71585;
+        }
+
+        .header .date-badge {
+            display: inline-block;
+            background: #fff;
+            color: #ff1493;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        /* 90s sparkle divider */
+        .divider {
+            text-align: center;
+            padding: 15px;
+            background: linear-gradient(90deg, transparent, #ff69b4, transparent);
+            color: #fff;
+            font-size: 1.2rem;
+            letter-spacing: 10px;
+        }
+
+        /* Love message - 90s style */
+        .love-section {
+            padding: 25px;
+            text-align: center;
+            background: #fff0f5;
+            border-bottom: 3px dashed #ff69b4;
+        }
+
+        .love-section h2 {
+            font-family: 'Permanent Marker', cursive;
+            color: #ff1493;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 0 #ffb6c1;
+        }
+
+        .love-section p {
+            color: #4a4a4a;
+            font-size: 0.95rem;
+            font-style: italic;
+            line-height: 1.7;
+        }
+
+        .heart-frame {
+            display: inline-block;
+            border: 3px solid #ff69b4;
+            border-radius: 50%;
+            padding: 15px 25px;
+            margin: 15px 0;
+            background: #fff;
+        }
+
+        /* Event details - 90s card style */
+        .details-section {
+            padding: 25px 20px;
+            background: #2d2d44;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Permanent Marker', cursive;
+            color: #ff69b4;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 0 #000;
+        }
+
+        .event-card {
+            background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
+            padding: 18px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            text-align: center;
+            box-shadow: 
+                4px 4px 0 #c71585,
+                0 0 15px rgba(255, 105, 180, 0.5);
+        }
+
+        .event-card .icon {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+
+        .event-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .event-card .time {
+            background: #fff;
+            color: #ff1493;
+            padding: 5px 15px;
+            border-radius: 15px;
+            display: inline-block;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        /* Big date display */
+        .big-date {
+            background: linear-gradient(45deg, #1a1a2e, #16213e);
+            padding: 30px 20px;
+            text-align: center;
+            border: 3px solid #ff69b4;
+            margin: 20px 0;
+        }
+
+        .big-date .day {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 3rem;
+            color: #ff69b4;
+            text-shadow: 2px 2px 0 #ff1493;
+        }
+
+        .big-date .month {
+            font-size: 1.5rem;
+            color: #fff;
+            letter-spacing: 5px;
+        }
+
+        .big-date .year {
+            font-size: 2.5rem;
+            color: #ff1493;
+            font-weight: bold;
+        }
+
+        /* Location - 90s style */
+        .location-section {
+            padding: 25px 20px;
+            background: #1a1a2e;
+            text-align: center;
+        }
+
+        .location-section h2 {
+            font-family: 'Permanent Marker', cursive;
+            color: #00ff00;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 0 #008000;
+        }
+
+        .location-box {
+            background: #fff;
+            color: #333;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 5px solid #ff69b4;
+        }
+
+        .location-box h3 {
+            color: #ff1493;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .location-box p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Dress code - 90s colorful */
+        .dress-section {
+            padding: 20px;
+            background: linear-gradient(180deg, #9400d3, #4b0082);
+            text-align: center;
+            border-top: 3px dotted #ffff00;
+        }
+
+        .dress-section h3 {
+            font-family: 'Permanent Marker', cursive;
+            color: #ffff00;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 0 #9400d3;
+        }
+
+        .dress-section p {
+            color: #e0e0e0;
+            font-size: 0.95rem;
+        }
+
+        /* RSVP - 90s buttons */
+        .rsvp-section {
+            padding: 25px 20px;
+            background: #fff;
+            text-align: center;
+        }
+
+        .rsvp-section h2 {
+            font-family: 'Permanent Marker', cursive;
+            color: #ff1493;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .rsvp-section p {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .rsvp-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .rsvp-btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            width: 80%;
+            max-width: 280px;
+        }
+
+        .rsvp-btn.yes {
+            background: linear-gradient(45deg, #00ff00, #32cd32);
+            color: #000;
+            box-shadow: 3px 3px 0 #228b22;
+        }
+
+        .rsvp-btn.no {
+            background: linear-gradient(45deg, #ff0000, #dc143c);
+            color: #fff;
+            box-shadow: 3px 3px 0 #8b0000;
+        }
+
+        .rsvp-btn:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0;
+        }
+
+        /* Gift registry */
+        .gift-section {
+            padding: 20px;
+            background: linear-gradient(180deg, #ffd700, #ff8c00);
+            text-align: center;
+        }
+
+        .gift-section h3 {
+            font-family: 'Permanent Marker', cursive;
+            color: #8b4513;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .gift-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 12px;
+        }
+
+        .gift-icon {
+            width: 45px;
+            height: 45px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff1493;
+            font-size: 1.2rem;
+            box-shadow: 2px 2px 0 #999;
+        }
+
+        /* Footer - 90s style */
+        .footer {
+            background: #000;
+            padding: 25px 20px;
+            text-align: center;
+            border-top: 4px solid #ff69b4;
+        }
+
+        .footer p {
+            color: #ff69b4;
+            font-style: italic;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .hashtag {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 1.5rem;
+            color: #00ffff;
+            text-shadow: 2px 2px 0 #ff1493;
+        }
+
+        /* 90s decorative elements */
+        .stars {
+            position: absolute;
+            font-size: 0.8rem;
+            animation: twinkle 1s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .contact-info {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px dashed #666;
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        /* Marquee - very 90s */
+        .marquee {
+            background: #ffff00;
+            color: #ff1493;
+            padding: 8px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee span {
+            display: inline-block;
+            animation: scroll 15s linear infinite;
+        }
+
+        @keyframes scroll {
+            from { transform: translateX(100%); }
+            to { transform: translateX(-100%); }
+        }
+
+        @media (max-width: 500px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .rsvp-btn {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wallpaper"></div>
+    
+    <div class="container">
+        <div class="invite-box">
+            <!-- Header -->
+            <div class="header">
+                <h1>DANIEL</h1>
+                <span class="ampersand">&</span>
+                <h1>FERNANDA</h1>
+                <div class="date-badge">💍 15 • 06 • 2026 💍</div>
+            </div>
+
+            <!-- Marquee -->
+            <div class="marquee">
+                <span>♥♥♥ FELIZ CASAMIENTO ♥♥♥ LOS INVITAMOS A CELEBRAR NUESTRO AMOR ♥♥♥</span>
+            </div>
+
+            <!-- Divider -->
+            <div class="divider">✿ ❀ ✿ ❀ ✿</div>
+
+            <!-- Love Message -->
+            <div class="love-section">
+                <h2>♥ Nuestro Amor ♥</h2>
+                <div class="heart-frame">
+                    <p>
+                        Desde que te conocí, supe que eras el amor de mi vida.<br><br>
+                        Cada momento juntos ha sido mágico, como una película<br>
+                        de las que tanto nos gustan... pero mejor.<br><br>
+                        <strong>Te amo hoy, mañana y siempre.</strong>
+                    </p>
+                </div>
+                <p style="color: #ff1493; font-weight: bold;">— Daniel Y Fernanda</p>
+            </div>
+
+            <!-- Divider -->
+            <div class="divider">♦ ♥ ♦ ♥ ♦</div>
+
+            <!-- Big Date -->
+            <div class="big-date">
+                <div class="day">15</div>
+                <div class="month">JUNIO • 2026</div>
+                <div class="year">♥ SÁBADO ♥</div>
+            </div>
+
+            <!-- Event Details -->
+            <div class="details-section">
+                <h2 class="section-title">📅 AGENDA DEL GRAN DÍA</h2>
+                
+                <div class="event-card">
+                    <div class="icon">💒</div>
+                    <h3>Ceremonia Religiosa</h3>
+                    <span class="time">16:00 hrs</span>
+                </div>
+                
+                <div class="event-card">
+                    <div class="icon">🥂</div>
+                    <h3>Recepción</h3>
+                    <span class="time">18:30 hrs</span>
+                </div>
+                
+                <div class="event-card">
+                    <div class="icon">💃🕺</div>
+                    <h3>Fiesta & Baile</h3>
+                    <span class="time">19:00 hrs</span>
+                </div>
+            </div>
+
+            <!-- Location -->
+            <div class="location-section">
+                <h2>📍 LUGARES ROMÁNTICOS</h2>
+                
+                <div class="location-box">
+                    <h3>💒 La Ceremonia</h3>
+                    <p>Parroquia Notre Dame</p>
+                    <p>Avenue des Champs-Élysées, 75008</p>
+                    <p>París, Francia 🇫🇷</p>
+                </div>
+                
+                <div class="location-box">
+                    <h3>🏰 La Fiesta</h3>
+                    <p>Le Château de L'Amour</p>
+                    <p>Torre Eiffel a la vista</p>
+                    <p>París, Francia 🇫🇷</p>
+                </div>
+
+                <a href="https://maps.google.com" target="_blank" style="display: inline-block; background: #ff69b4; color: #fff; padding: 12px 25px; border-radius: 20px; text-decoration: none; font-weight: bold; margin-top: 10px;">
+                    📍 Ver en Mapa
+                </a>
+            </div>
+
+            <!-- Dress Code -->
+            <div class="dress-section">
+                <h3>👗 CÓDIGO DE VESTimenta</h3>
+                <p>Traje formal elegante. Ladies: favorecen colores fuertes.<br>
+                <strong>NO blanco</strong> (esa honor es de la novia) ✨</p>
+            </div>
+
+            <!-- Gift Registry -->
+            <div class="gift-section">
+                <h3>🎁 MESA DE REGALOS</h3>
+                <div class="gift-icons">
+                    <div class="gift-icon"><i class="fas fa-qrcode"></i></div>
+                    <div class="gift-icon"><i class="fas fa-university"></i></div>
+                    <div class="gift-icon"><i class="fas fa-shopping-bag"></i></div>
+                    <div class="gift-icon"><i class="fas fa-gift"></i></div>
+                </div>
+                <p style="color: #4a4a4a; font-size: 0.85rem;">
+                    Aceptamos sobres 💕 Viaje de luna de miel incluido
+                </p>
+            </div>
+
+            <!-- RSVP -->
+            <div class="rsvp-section">
+                <h2>📬 CONFIRMA ASISTENCIA</h2>
+                <p>¡Te esperamos! Responde antes del 1 de Junio 2026</p>
+                
+                <div class="rsvp-buttons">
+                    <a href="tel:+33999999999" class="rsvp-btn yes">
+                        ✅ SÍ, CUENTA CONMIGO
+                    </a>
+                    <a href="mailto:boda@carlosymaria.com" class="rsvp-btn no">
+                        ❌ NO PODRÉ ASISTIR
+                    </a>
+                </div>
+
+                <div class="contact-info">
+                    📞 +33 9 99 99 99 99<br>
+                    ✉️ boda@carlosymaria.com
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">
+                <p>"Dos almas gemelas se encuentran.<br>
+                El destino escribió nuestra historia."</p>
+                <div class="hashtag">#CarlosYMaría2026</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
