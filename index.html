@@ -74,6 +74,158 @@
             z-index: 0;
         }
 
+        /* ====== MODAL STYLES ====== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--vintage-cream);
+            border-radius: 8px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--vintage-brown);
+            cursor: pointer;
+            z-index: 10;
+            padding: 5px 10px;
+        }
+
+        .modal-close:hover {
+            color: var(--vintage-red);
+        }
+
+        .modal-body {
+            padding: 30px 25px;
+            text-align: center;
+        }
+
+        .modal-body h2 {
+            font-family: 'Libre Baskerville', serif;
+            color: var(--vintage-brown);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .modal-body p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        /* Main Menu Buttons */
+        .main-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 20px;
+            max-width: 320px;
+            margin: 0 auto;
+        }
+
+        .menu-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px 20px;
+            background: var(--vintage-brown);
+            color: var(--vintage-cream);
+            border: 2px solid var(--vintage-sepia);
+            border-radius: 6px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 3px 3px 0 rgba(92, 64, 51, 0.3);
+        }
+
+        .menu-btn:hover {
+            background: var(--vintage-sepia);
+            transform: translateY(-2px);
+            box-shadow: 4px 4px 0 rgba(92, 64, 51, 0.4);
+        }
+
+        .menu-btn:active {
+            transform: translateY(0);
+            box-shadow: 2px 2px 0 rgba(92, 64, 51, 0.3);
+        }
+
+        .menu-btn i {
+            font-size: 1.2rem;
+        }
+
+        /* Decorative Rings */
+        .rings-decoration {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 15px 0;
+        }
+
+        .ring {
+            width: 35px;
+            height: 35px;
+            border: 3px solid var(--vintage-gold);
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .ring:first-child {
+            margin-right: -8px;
+            z-index: 1;
+        }
+
+        .ring:last-child {
+            z-index: 2;
+        }
+
+        .ring-small {
+            width: 28px;
+            height: 28px;
+            border-width: 2px;
+        }
+
         .corner-decor.top-left { top: 10px; left: 15px; }
         .corner-decor.top-right { top: 10px; right: 15px; transform: rotate(90deg); }
         .corner-decor.bottom-left { bottom: 10px; left: 15px; transform: rotate(-90deg); }
@@ -922,7 +1074,7 @@
     <span class="corner-decor bottom-right">❦</span>
 
     <div class="main-container">
-        <!-- INVITATION SECTION -->
+        <!-- MAIN MENU -->
         <section class="invitation-section">
             <div class="invitation-card">
                 <div class="card-header"></div>
@@ -944,9 +1096,39 @@
                         <i class="fas fa-rings-wedding"></i> 30 de Diciembre, 2035
                     </div>
                     
+                    <!-- Decorative Rings -->
+                    <div class="rings-decoration">
+                        <div class="ring"></div>
+                        <div class="ring"></div>
+                    </div>
+                    
                     <div class="ornament-line">
                         <span class="ornament-icon">✦</span>
                     </div>
+                </div>
+
+                <div class="main-menu">
+                    <button class="menu-btn" onclick="openModal('modal-invitacion')">
+                        <i class="fas fa-heart"></i> Nuestra Historia
+                    </button>
+                    <button class="menu-btn" onclick="openModal('modal-fecha')">
+                        <i class="fas fa-calendar-alt"></i> Fecha y Hora
+                    </button>
+                    <button class="menu-btn" onclick="openModal('modal-ubicacion')">
+                        <i class="fas fa-map-marker-alt"></i> Ubicación
+                    </button>
+                    <button class="menu-btn" onclick="openModal('modal-fotos')">
+                        <i class="fas fa-camera"></i> Fotos
+                    </button>
+                    <button class="menu-btn" onclick="openModal('modal-regalos')">
+                        <i class="fas fa-gift"></i> Regalos
+                    </button>
+                    <button class="menu-btn" onclick="openModal('modal-cancion')">
+                        <i class="fas fa-music"></i> Sugerir Canción
+                    </button>
+                    <button class="menu-btn" onclick="openModal('modal-confirmar')">
+                        <i class="fab fa-whatsapp"></i> Confirmar Asistencia
+                    </button>
                 </div>
 
                 <div class="love-message">
@@ -964,106 +1146,163 @@
                         Con todo nuestro amor
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="details-section">
-                    <h2 class="section-title">La Ceremonia</h2>
-                    
-                    <div class="date-highlight">
-                        <div class="date-label">Sábado</div>
-                        <div class="date-main">30 de Diciembre, 2035</div>
-                        <div class="time">A las 16:00 horas</div>
+        <!-- MODALES -->
+        
+        <!-- Modal Invitación -->
+        <div class="modal-overlay" id="modal-invitacion">
+            <div class="modal-content">
+                <button class="modal-close" onclick="closeModal('modal-invitacion')">&times;</button>
+                <div class="modal-body">
+                    <h2><i class="fas fa-heart"></i> Nuestra Historia</h2>
+                    <p>Desde que nuestros caminos se cruzaron, cada amanecer ha sido más luminoso a tu lado.</p>
+                    <p>Contigo he encontrado el amor más puro y la compañía más verdadera. Hoy, con el corazón desbordante, te invito a ser parte del momento más sagrado de nuestra vida.</p>
+                    <p><strong>Comenzar juntos un forever.</strong></p>
+                    <p style="margin-top: 20px; font-style: italic;">Con todo nuestro amor,<br>Daniel & Fernanda</p>
+                    <div style="margin-top: 25px; padding: 15px; background: var(--vintage-paper); border-radius: 4px; font-style: italic; border-left: 3px solid var(--vintage-gold);">
+                        <p style="margin-bottom: 8px;">"Por esto el hombre abandonará a su padre y a su madre, y se unirá a su esposa, y los dos serán una sola carne."</p>
+                        <p style="font-size: 0.85rem; color: var(--text-light);">Mateo 19:5-6</p>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <div class="location-section">
-                    <h2 class="section-title">Ubicación</h2>
-                    
-                    <div class="location-card">
-                        <div class="location-name">
-                            <i class="fas fa-church"></i> Colico Norte
-                        </div>
-                        <div class="location-address">
-                            Lugar donde será la ceremonia y la recepción<br>
-                            Colico Norte
-                        </div>
-                    </div>
-                    
-                    <a href="https://maps.app.goo.gl/NJUSuXJGaBo4QSuA7" target="_blank" class="map-button">
-                        <i class="fas fa-map-marker-alt"></i> Ver ubicación
+        <!-- Modal Fecha y Hora -->
+        <div class="modal-overlay" id="modal-fecha">
+            <div class="modal-content">
+                <button class="modal-close" onclick="closeModal('modal-fecha')">&times;</button>
+                <div class="modal-body">
+                    <h2><i class="fas fa-calendar-alt"></i> Fecha y Hora</h2>
+                    <p><strong>Día:</strong> Lunes 30 de Diciembre, 2035</p>
+                    <p><strong>Hora:</strong> 16:00 horas</p>
+                    <p style="margin-top: 15px; padding: 15px; background: var(--vintage-paper); border-radius: 4px;">
+                        <i class="fas fa-church"></i> Ceremonia y Recepción<br>
+                        <span style="font-size: 0.95rem;">Colico Norte</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Ubicación -->
+        <div class="modal-overlay" id="modal-ubicacion">
+            <div class="modal-content">
+                <button class="modal-close" onclick="closeModal('modal-ubicacion')">&times;</button>
+                <div class="modal-body">
+                    <h2><i class="fas fa-map-marker-alt"></i> Ubicación</h2>
+                    <p><strong>Colico Norte</strong></p>
+                    <p>Lugar donde será la ceremonia y la recepción</p>
+                    <a href="https://maps.app.goo.gl/NJUSuXJGaBo4QSuA7" target="_blank" class="rsvp-btn primary" style="display: inline-block; margin-top: 15px; text-decoration: none;">
+                        <i class="fas fa-external-link-alt"></i> Ver en Google Maps
                     </a>
                 </div>
+            </div>
+        </div>
 
-                <div class="dress-code">
-                    <div class="dress-code-title">
-                        <i class="fas fa-tshirt"></i> Código de Vestimenta
-                    </div>
-                    <div class="dress-code-text">
-                        Traje formal. Se solicita no usar color blanco para no opacar a la novia.
+        <!-- Modal Fotos -->
+        <div class="modal-overlay" id="modal-fotos">
+            <div class="modal-content">
+                <button class="modal-close" onclick="closeModal('modal-fotos')">&times;</button>
+                <div class="modal-body">
+                    <h2><i class="fas fa-camera-retro"></i> Comparte tus Recuerdos</h2>
+                    <p>¡Comparte las fotos que tomes en nuestra boda!</p>
+                    <button class="btn-camera" onclick="document.getElementById('photoInput').click()" style="margin-top: 15px;">
+                        <i class="fas fa-camera"></i> Subir Fotos
+                    </button>
+                    <input type="file" id="photoInput" accept="image/*" multiple onchange="handlePhotoUpload(event)" style="display: none;">
+                    <div class="photos-grid" id="photosGrid" style="margin-top: 20px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+                        <div class="photo-item empty"><i class="fas fa-images"></i></div>
+                        <div class="photo-item empty"><i class="fas fa-images"></i></div>
+                        <div class="photo-item empty"><i class="fas fa-images"></i></div>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <div class="rsvp-section">
-                    <h2 class="rsvp-title">Confirmación</h2>
-                    <p class="rsvp-text">Tu presencia es muy importante para nosotros.<br>Por favor, confirmanos antes del 15 de Diciembre de 2035</p>
+        <!-- Modal Regalos -->
+        <div class="modal-overlay" id="modal-regalos">
+            <div class="modal-content">
+                <button class="modal-close" onclick="closeModal('modal-regalos')">&times;</button>
+                <div class="modal-body">
+                    <h2><i class="fas fa-gift"></i> Regalos</h2>
+                    <p>Tu presencia en nuestro día es el mejor regalo. Si deseas obsequiarnos un detalle, puedes hacerlo:</p>
                     
-                    <div class="rsvp-buttons">
-                        <a href="https://wa.me/56966529597?text=Hola,%20confirmo%20mi%20asistencia%20al%20gran%20día%20de%20Daniel%20y%20Fernanda" class="rsvp-btn primary" target="_blank">
-                            <i class="fab fa-whatsapp"></i> ¡Confirmar con mucho cariño!
-                        </a>
-                        <a href="mailto:danict090@gmail.com" class="rsvp-btn">
-                            <i class="fas fa-times"></i> No podré asistir
-                        </a>
+                    <div class="gift-option" style="margin: 15px 0;">
+                        <i class="fas fa-envelope-open-text"></i>
+                        <span>Sobre de regalo el día de la boda</span>
                     </div>
                     
-                    <div class="contact-info">
-                        <i class="fab fa-whatsapp"></i> +56 9 6652 9597<br>
-                        <i class="fas fa-envelope"></i> danict090@gmail.com
-                    </div>
-                </div>
-
-                <!-- GIFTS SECTION -->
-                <div class="gifts-section">
-                    <h2 class="gifts-title">
-                        <i class="fas fa-gift"></i> Regalos
-                    </h2>
-                    <p class="gifts-text">
-                        Tu presencia en nuestro día es el mejor regalo. 
-                        Si deseas obsequiarnos un detalle, puedes hacerlo:
-                    </p>
-                    
-                    <div class="gift-options">
-                        <div class="gift-option">
-                            <i class="fas fa-envelope-open-text"></i>
-                            <span>Sobre de regalo el día de la boda</span>
-                        </div>
-                    </div>
-                    
-                    <p class="gifts-text" style="margin-top: 15px;">O mediante transferencia:</p>
-                    
-                    <div class="gift-info">
+                    <p>O mediante transferencia:</p>
+                    <div class="gift-info" style="margin-top: 15px; padding: 15px; background: var(--vintage-paper); border-radius: 4px;">
                         <p><strong>Nombre:</strong> Daniel Alonso Ceballos Troncoso</p>
                         <p><strong>RUT:</strong> 21.775.516-6</p>
                         <p><strong>Banco:</strong> Banco Estado</p>
                         <p><strong>Tipo:</strong> Cuenta Vista</p>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <!-- MUSIC SUGGESTION SECTION -->
-                <div class="gifts-section">
-                    <h2 class="gifts-title">
-                        <i class="fas fa-music"></i> ¿Qué canción no puede faltar?
-                    </h2>
-                    <p class="gifts-text">
-                        Ayúdanos a crear la playlist perfecta para nuestra fiesta. 
-                        ¡Dinos qué canción crees que no puede faltar en nuestra celebración!
-                    </p>
+        <!-- Modal Canción -->
+        <div class="modal-overlay" id="modal-cancion">
+            <div class="modal-content">
+                <button class="modal-close" onclick="closeModal('modal-cancion')">&times;</button>
+                <div class="modal-body">
+                    <h2><i class="fas fa-music"></i> ¿Qué canción no puede faltar?</h2>
+                    <p>Ayúdanos a crear la playlist perfecta para nuestra fiesta. ¡Dinos qué canción crees que no puede faltar!</p>
+                    <input type="text" id="songSuggestion2" placeholder="Escribe el nombre de la canción y el artista" 
+                           style="width: 100%; padding: 10px; border: 1px solid var(--vintage-sepia); border-radius: 4px; font-family: 'Cormorant Garamond', serif; font-size: 1rem; margin-top: 15px;">
+                    <button onclick="sendSongSuggestion2()" style="margin-top: 10px; padding: 10px 20px; background: var(--vintage-brown); color: var(--vintage-cream); border: none; border-radius: 4px; cursor: pointer; font-family: 'Cormorant Garamond', serif;">
+                        <i class="fas fa-paper-plane"></i> Enviar sugerencia
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Confirmar -->
+        <div class="modal-overlay" id="modal-confirmar">
+            <div class="modal-content">
+                <button class="modal-close" onclick="closeModal('modal-confirmar')">&times;</button>
+                <div class="modal-body">
+                    <h2><i class="fab fa-whatsapp"></i> Confirmación</h2>
+                    <p>Tu presencia es muy importante para nosotros.<br>Por favor, confirmarnos antes del 15 de Diciembre de 2035</p>
                     
-                    <div class="gift-info">
-                        <input type="text" id="songSuggestion" placeholder="Escribe el nombre de la canción y el artista" 
-                               style="width: 100%; padding: 10px; border: 1px solid var(--vintage-sepia); border-radius: 4px; font-family: 'Cormorant Garamond', serif; font-size: 1rem;">
-                        <button onclick="sendSongSuggestion()" style="margin-top: 10px; padding: 10px 20px; background: var(--vintage-brown); color: var(--vintage-cream); border: none; border-radius: 4px; cursor: pointer; font-family: 'Cormorant Garamond', serif;">
-                            <i class="fas fa-paper-plane"></i> Enviar sugerencia
-                        </button>
+                    <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 20px;">
+                        <a href="https://wa.me/56966529597?text=Hola,%20confirmo%20mi%20asistencia%20al%20gran%20día%20de%20Daniel%20y%20Fernanda" class="rsvp-btn primary" target="_blank" style="display: inline-block; text-decoration: none;">
+                            <i class="fab fa-whatsapp"></i> ¡Confirmar con mucho cariño!
+                        </a>
+                        <a href="https://wa.me/56966529597?text=Hola,%20lamentablemente%20no%20podré%20asistir%20a%20la%20boda%20de%20Daniel%20y%20Fernanda" class="rsvp-btn" target="_blank" style="display: inline-block; text-decoration: none;">
+                            <i class="fas fa-times"></i> No podré asistir
+                        </a>
+                    </div>
+                    
+                    <div style="margin-top: 20px; font-size: 0.85rem; color: var(--text-light);">
+                        <i class="fab fa-whatsapp"></i> +56 9 6652 9597<br>
+                        <i class="fas fa-envelope"></i> danict090@gmail.com
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- INVITATION SECTION (Hidden - keeping for reference) -->
+        <!-- REMOVED FOR NEW MODAL DESIGN -->
+                    </div>
+                </div>
+
+                <div class="love-message">
+                    <p>
+                        Desde que nuestros caminos se cruzaron, 
+                        cada amanecer ha sido más luminoso a tu lado.
+                        <br><br>
+                        Contigo he encontrado el amor más puro y la compañía más verdadera.
+                        Hoy, con el corazón desbordante, te invito a ser parte 
+                        del momento más sagrado de nuestra vida.
+                        <br><br>
+                        <strong>Comenzar juntos un forever.</strong>
+                    </p>
+                    <div class="signature">
+                        Con todo nuestro amor
                     </div>
                 </div>
 
@@ -1212,6 +1451,50 @@
             const message = encodeURIComponent('Sugerencia de canción para la boda: ' + song);
             window.open('https://wa.me/56966529597?text=' + message, '_blank');
         }
+
+        // Send song suggestion from modal
+        function sendSongSuggestion2() {
+            const song = document.getElementById('songSuggestion2').value.trim();
+            if (!song) {
+                showToast('Por favor, escribe una canción', 'error');
+                return;
+            }
+            const message = encodeURIComponent('Sugerencia de canción para la boda: ' + song);
+            window.open('https://wa.me/56966529597?text=' + message, '_blank');
+            document.getElementById('songSuggestion2').value = '';
+            showToast('¡Gracias por tu sugerencia!', 'success');
+        }
+
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close modal when clicking outside
+        document.querySelectorAll('.modal-overlay').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal-overlay.active').forEach(modal => {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            }
+        });
 
         // Show toast notification
         function showToast(message, type = 'info') {
