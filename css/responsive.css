@@ -1,0 +1,122 @@
+/* Responsive - Media Queries */
+
+@media (min-width: 480px) {
+    .invitation-section {
+        padding: 30px 20px;
+    }
+    
+    .hero-section {
+        padding: 40px 30px 25px;
+    }
+    
+    .couple-names {
+        font-size: 2.8rem;
+    }
+    
+    .couple-names .ampersand {
+        font-size: 1.6rem;
+    }
+    
+    .love-message {
+        padding: 28px 30px;
+    }
+    
+    .love-message p {
+        font-size: 1.15rem;
+    }
+    
+    .details-section,
+    .location-section,
+    .rsvp-section {
+        padding: 35px 25px;
+    }
+    
+    .date-highlight {
+        padding: 25px 20px;
+    }
+    
+    .date-highlight .date-main {
+        font-size: 2rem;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .location-card {
+        padding: 22px;
+    }
+    
+    .location-name {
+        font-size: 1.35rem;
+    }
+    
+    .rsvp-buttons {
+        flex-direction: row;
+        justify-content: center;
+    }
+    
+    .rsvp-btn {
+        width: auto;
+    }
+    
+    .photos-section {
+        padding: 25px 20px;
+    }
+    
+    .photos-grid {
+        gap: 12px;
+    }
+}
+
+@media (min-width: 768px) {
+    .invitation-section {
+        padding: 40px 20px;
+    }
+    
+    .couple-names {
+        font-size: 3.5rem;
+    }
+    
+    .couple-names .ampersand {
+        font-size: 1.8rem;
+    }
+    
+    .love-message {
+        padding: 35px 45px;
+    }
+    
+    .love-message p {
+        font-size: 1.3rem;
+    }
+    
+    .photos-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+    }
+}
+
+/* Touch Devices */
+@media (hover: none) {
+    .rsvp-btn:active,
+    .map-button:active,
+    .btn-camera:active {
+        transform: translate(1px, 1px);
+    }
+}
+
+/* Safe Area for iOS */
+@supports (padding: env(safe-area-inset-top)) {
+    .invitation-section {
+        padding-top: calc(20px + env(safe-area-inset-top));
+    }
+    
+    .photos-section {
+        padding-bottom: calc(20px + env(safe-area-inset-bottom));
+    }
+    
+    .music-player {
+        bottom: calc(20px + env(safe-area-inset-bottom));
+        right: calc(20px + env(safe-area-inset-right));
+    }
+}

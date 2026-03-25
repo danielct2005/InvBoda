@@ -1,0 +1,525 @@
+/* Layout - Section-specific Styles */
+
+/* Invitation Section */
+.invitation-section {
+    flex: 1;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeIn 1.2s ease;
+}
+
+.invitation-card {
+    background: var(--vintage-cream);
+    border-radius: 2px;
+    box-shadow: 
+        0 20px 60px rgba(92, 64, 51, 0.2),
+        0 0 0 1px var(--vintage-sepia),
+        inset 0 0 80px rgba(139, 115, 85, 0.1);
+    overflow: hidden;
+    border: 3px solid var(--vintage-brown);
+    width: 100%;
+    max-width: 650px;
+    animation: fadeIn 1.2s ease;
+}
+
+.card-header {
+    height: 5px;
+    background: linear-gradient(90deg, var(--vintage-brown) 0%, var(--vintage-gold) 50%, var(--vintage-brown) 100%);
+}
+
+/* Hero Section */
+.hero-section {
+    text-align: center;
+    padding: 30px 20px 20px;
+    background: linear-gradient(180deg, var(--vintage-cream) 0%, #faf6ed 100%);
+    animation: fadeIn 1s ease 0.3s both;
+}
+
+.ornament-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.ornament-line::before,
+.ornament-line::after {
+    content: '';
+    height: 1px;
+    width: 40px;
+    background: var(--vintage-sepia);
+}
+
+.ornament-icon {
+    color: var(--vintage-gold);
+    font-size: 1rem;
+}
+
+.invite-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--vintage-sepia);
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.couple-names {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--vintage-brown);
+    line-height: 1.1;
+    margin-bottom: 8px;
+}
+
+.couple-names .ampersand {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--vintage-sepia);
+    font-style: italic;
+    margin: 6px 0;
+}
+
+.wedding-date-display {
+    display: inline-block;
+    border: 1px solid var(--vintage-sepia);
+    padding: 6px 16px;
+    margin-top: 12px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+    color: var(--vintage-brown);
+    letter-spacing: 1px;
+}
+
+/* Love Message */
+.love-message {
+    padding: 20px 18px;
+    text-align: center;
+    background: var(--white);
+    border-top: 1px solid var(--vintage-sepia);
+    border-bottom: 1px solid var(--vintage-sepia);
+    position: relative;
+    animation: fadeIn 1s ease 0.6s both;
+}
+
+.love-message::before,
+.love-message::after {
+    content: '❧';
+    position: absolute;
+    font-size: 1.2rem;
+    color: var(--vintage-sepia);
+    opacity: 0.4;
+}
+
+.love-message::before { top: 8px; left: 10px; }
+.love-message::after { bottom: 8px; right: 10px; transform: rotate(180deg); }
+
+.love-message p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+.signature {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.9rem;
+    color: var(--vintage-sepia);
+    margin-top: 15px;
+    font-style: italic;
+}
+
+/* Details Section */
+.details-section {
+    padding: 25px 18px;
+    text-align: center;
+    background: var(--vintage-cream);
+    animation: fadeIn 1s ease 0.9s both;
+}
+
+.section-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.3rem;
+    color: var(--vintage-brown);
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 2px;
+    background: var(--vintage-gold);
+}
+
+.date-highlight .date-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.85;
+    margin-bottom: 4px;
+}
+
+.date-highlight .date-main {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.date-highlight .time {
+    font-size: 0.95rem;
+    margin-top: 6px;
+    opacity: 0.9;
+}
+
+/* Location Section */
+.location-section {
+    padding: 20px 18px 25px;
+    text-align: center;
+    background: var(--vintage-paper);
+    border-top: 1px solid var(--vintage-sepia);
+    animation: fadeIn 1s ease 1.1s both;
+}
+
+.location-name {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.2rem;
+    color: var(--vintage-brown);
+    margin-bottom: 8px;
+}
+
+.location-address {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+/* Dress Code */
+.dress-code {
+    background: var(--vintage-rose);
+    padding: 16px 18px;
+    text-align: center;
+    border-top: 1px solid var(--vintage-sepia);
+    animation: fadeIn 1s ease 1.5s both;
+}
+
+.dress-code-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1rem;
+    color: var(--vintage-brown);
+    margin-bottom: 6px;
+}
+
+.dress-code-text {
+    font-size: 0.9rem;
+    color: var(--text-dark);
+}
+
+/* Countdown */
+.countdown-section {
+    background: var(--vintage-cream);
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid var(--vintage-sepia);
+    animation: fadeIn 1s ease 1.3s both;
+}
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--vintage-paper);
+    padding: 10px 15px;
+    border-radius: 8px;
+    min-width: 60px;
+    border: 1px solid var(--vintage-sepia);
+}
+
+.countdown-number {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.5rem;
+    color: var(--vintage-brown);
+    font-weight: bold;
+}
+
+.countdown-label {
+    font-size: 0.7rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+    margin-top: 2px;
+}
+
+/* RSVP Section */
+.rsvp-section {
+    padding: 20px 18px;
+    text-align: center;
+    background: var(--vintage-cream);
+}
+
+.rsvp-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.3rem;
+    color: var(--vintage-brown);
+    margin-bottom: 8px;
+}
+
+.rsvp-text {
+    color: var(--text-light);
+    margin-bottom: 18px;
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+.rsvp-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.contact-info {
+    margin-top: 18px;
+    padding-top: 15px;
+    border-top: 1px solid var(--vintage-sepia);
+    font-size: 0.8rem;
+    color: var(--text-light);
+}
+
+.contact-info i {
+    color: var(--vintage-red);
+    margin-right: 4px;
+}
+
+/* Gifts Section */
+.gifts-section {
+    background: var(--vintage-cream);
+    padding: 35px 20px;
+    text-align: center;
+    border-top: 1px solid var(--vintage-sepia);
+}
+
+.gifts-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.5rem;
+    color: var(--vintage-brown);
+    margin-bottom: 15px;
+}
+
+.gifts-title i {
+    color: var(--vintage-red);
+    margin-right: 8px;
+}
+
+.gifts-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--text-light);
+    max-width: 500px;
+    margin: 0 auto 20px;
+    line-height: 1.6;
+}
+
+.gift-options {
+    margin: 15px 0;
+}
+
+.gift-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px;
+    background: var(--vintage-paper);
+    border-radius: 4px;
+    max-width: 400px;
+    margin: 0 auto;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--text-dark);
+}
+
+.gift-option i {
+    color: var(--vintage-red);
+    font-size: 1.2rem;
+}
+
+.gift-info {
+    margin-top: 15px;
+    padding: 15px;
+    background: var(--vintage-paper);
+    border-radius: 4px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.gift-info p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    margin: 5px 0;
+}
+
+.gift-info strong {
+    color: var(--vintage-brown);
+}
+
+/* Footer */
+.footer {
+    background: var(--vintage-brown);
+    color: var(--vintage-cream);
+    text-align: center;
+    padding: 20px;
+}
+
+.footer-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+    font-style: italic;
+    opacity: 0.9;
+    line-height: 1.6;
+}
+
+.hashtag {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.1rem;
+    margin-top: 12px;
+    color: var(--vintage-gold);
+}
+
+/* Photos Section */
+.photos-section {
+    background: var(--vintage-paper);
+    border-top: 3px solid var(--vintage-sepia);
+    padding: 20px 15px;
+}
+
+.photos-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.photos-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.2rem;
+    color: var(--vintage-brown);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#photoInput {
+    display: none;
+}
+
+.photos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.photo-item {
+    aspect-ratio: 1;
+    border-radius: 2px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 2px 2px 0 var(--shadow);
+    border: 2px solid var(--vintage-sepia);
+    background: var(--vintage-cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.photo-item.empty {
+    color: var(--vintage-sepia);
+    font-size: 2rem;
+    opacity: 0.3;
+}
+
+.empty-message {
+    text-align: center;
+    padding: 20px;
+    color: var(--text-light);
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+/* Photo Modal */
+.photo-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.photo-modal.active {
+    display: flex;
+}
+
+.photo-modal img {
+    max-width: 100%;
+    max-height: 90vh;
+    border-radius: 4px;
+    border: 3px solid var(--vintage-gold);
+}
+
+.close-photo-modal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: var(--vintage-cream);
+    border: 2px solid var(--vintage-brown);
+    border-radius: 2px;
+    color: var(--vintage-brown);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.close-photo-modal:hover {
+    background: var(--vintage-red);
+    color: white;
+    border-color: var(--vintage-red);
+}
