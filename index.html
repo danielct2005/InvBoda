@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Boda Daniel & Fernanda - 15 Junio 2026 v5 - Música lista -->
+<!-- Boda Daniel & Fernanda - 15 Junio 2026 v6 - Con música -->
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -1029,29 +1029,11 @@
         // Set volume
         if (music) {
             music.volume = 0.4;
-            
-            // Add error handling
-            music.addEventListener('error', function(e) {
-                console.log('Music load error:', music.error);
-                showToast('Error al cargar música', 'error');
-            });
-            
-            // Preload
-            music.load();
         }
         
         function toggleMusic() {
-            if (!music) {
-                showToast('Error: reproductor no encontrado', 'error');
-                return;
-            }
-            
-            // Check if src is loaded
-            if (!music.src || music.src === window.location.href) {
-                // Try to reload
-                music.load();
-                showToast('Cargando música...', 'info');
-                setTimeout(() => toggleMusic(), 500);
+            if (!music || !music.src) {
+                showToast('Agrega una canción en el código', 'info');
                 return;
             }
             
@@ -1069,7 +1051,7 @@
                         isMusicPlaying = true;
                     }).catch(error => {
                         console.log('Error playing music:', error);
-                        showToast('Haz click para reproducir música', 'info');
+                        showToast('Toca para reproducir música', 'info');
                     });
                 }
             }
