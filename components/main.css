@@ -2,10 +2,10 @@
 /* This file imports all modular CSS files */
 
 /* 1. Variables and Theme */
-@import url('variables.css');
+@import url('../theme/variables.css');
 
 /* 2. Base Styles */
-@import url('base.css');
+@import url('../theme/base.css');
 
 /* 3. Components */
 @import url('components.css');
@@ -14,7 +14,7 @@
 @import url('layout.css');
 
 /* 5. Animations */
-@import url('animations.css');
+@import url('../theme/animations.css');
 
 /* 6. Responsive */
 @import url('responsive.css');
