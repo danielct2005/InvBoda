@@ -967,12 +967,8 @@
             <!-- Audio Element - Replace with your own music URL if desired -->
             <!-- To change the music, replace the src below with your own URL -->
             <!-- Free romantic music options (Pixabay - royalty free): -->
-            <!-- Piano romantico: https://cdn.pixabay.com/audio/2022/10/05/audio_6d0f6f3e02.mp3 -->
-            <!-- Boda: https://cdn.pixabay.com/audio/2022/02/07/audio_d1718ab41b.mp3 -->
-            <!-- Violin: https://cdn.pixabay.com/audio/2022/03/10/audio_9d74024f14.mp3 -->
-            <audio id="backgroundMusic" loop preload="auto">
-                <source src="https://cdn.pixabay.com/audio/2022/10/05/audio_6d0f6f3e02.mp3" type="audio/mpeg">
-            </audio>
+            <!-- Agrega tu música aquí: <source src="TU_URL_DE_MUSICA.mp3" type="audio/mpeg"> -->
+            <audio id="backgroundMusic" loop preload="auto"></audio>
         </section>
 
         <!-- PHOTOS SECTION -->
@@ -1061,26 +1057,25 @@
         });
 
         // ====== SUPABASE CONFIGURATION ======
-        // REPLACE THESE WITH YOUR SUPABASE CREDENTIALS
         const SUPABASE_URL = 'https://dqtvnihchcomgdnkzwub.supabase.co';
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRxdHZuaWhjaGNvbWdkbmt6d3ViIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzg4OTc0MDAsImV4cCI6MjA1NDQ3MzQwMH0.M9L4LWi6VatLIXjJbjOsS6A2H-YGPhT6C4f6dSPB2L8';
         const BUCKET_NAME = 'wedding-photos';
         
-        var supabaseClient;
+        var dbClient;
         
         // Initialize Supabase
         function initSupabase() {
-            if (typeof supabase === 'undefined') {
+            if (typeof window.supabase === 'undefined') {
                 console.log('⚠️ Supabase no cargado. Las fotos se guardarán solo localmente.');
                 return null;
             }
-            return supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+            return window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
         }
 
         // Photo handling
         let photos = [];
         let isUploading = false;
-        let supabase = supabaseClient;
+        let supabase = null;
 
         // Show toast notification
         function showToast(message, type = 'info') {
@@ -1296,12 +1291,11 @@
             await loadPhotos();
         });
 
-        // Make functions globally accessible
+        // Make functions globally accessible for HTML events
         window.toggleMusic = toggleMusic;
         window.handlePhotoUpload = handlePhotoUpload;
         window.viewPhoto = viewPhoto;
         window.closePhotoModal = closePhotoModal;
-        window.supabase = supabase;
     </script>
 </body>
 </html>
