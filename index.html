@@ -11,8 +11,12 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-</head>
-<body>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Cambiar modo">
+        <i class="fas fa-moon"></i>
+        <i class="fas fa-sun"></i>
+    </button>
+
     <span class="corner-decor top-left">❦</span>
     <span class="corner-decor top-right">❦</span>
     <span class="corner-decor bottom-left">❦</span>
@@ -64,9 +68,9 @@
                         <strong>Comenzar juntos un forever.</strong>
                     </p>
                     
-                    <div style="margin-top: 20px; padding: 15px; background: var(--vintage-paper); border-radius: 4px; font-style: italic; border-left: 3px solid var(--vintage-gold);">
+                    <div style="margin-top: 20px; padding: 15px; background: var(--bg-section); border-radius: 4px; font-style: italic; border-left: 3px solid var(--vintage-gold);">
                         <p style="margin-bottom: 8px; font-size: 0.95rem;">"Por esto el hombre abandonará a su padre y a su madre, y se unirá a su esposa, y los dos serán una sola carne."</p>
-                        <p style="font-size: 0.8rem; color: var(--text-light);">Mateo 19:5-6</p>
+                        <p style="font-size: 0.8rem; color: var(--text-secondary);">Mateo 19:5-6</p>
                     </div>
                     
                     <div class="signature">
@@ -197,7 +201,7 @@
                     </div>
                     
                     <p>O mediante transferencia:</p>
-                    <div class="gift-info" style="margin-top: 15px; padding: 15px; background: var(--vintage-paper); border-radius: 4px;">
+                    <div class="gift-info" style="margin-top: 15px; padding: 15px; background: var(--bg-section); border-radius: 4px;">
                         <p><strong>Nombre:</strong> Daniel Alonso Ceballos Troncoso</p>
                         <p><strong>RUT:</strong> 21.775.516-6</p>
                         <p><strong>Banco:</strong> Banco Estado</p>
@@ -215,7 +219,7 @@
                     <h2><i class="fas fa-music"></i> ¿Qué canción no puede faltar?</h2>
                     <p>Ayúdanos a crear la playlist perfecta para nuestra fiesta. ¡Dinos qué canción crees que no puede faltar!</p>
                     <input type="text" id="songSuggestion2" placeholder="Escribe el nombre de la canción y el artista" 
-                           style="width: 100%; padding: 10px; border: 1px solid var(--vintage-sepia); border-radius: 4px; font-family: 'Cormorant Garamond', serif; font-size: 1rem; margin-top: 15px;">
+                           style="width: 100%; padding: 10px; border: 1px solid var(--vintage-sepia); border-radius: 4px; font-family: 'Cormorant Garamond', serif; font-size: 1rem; margin-top: 15px; background: var(--input-bg); color: var(--text-primary);">
                     <button onclick="sendSongSuggestion2()" style="margin-top: 10px; padding: 10px 20px; background: var(--vintage-brown); color: var(--vintage-cream); border: none; border-radius: 4px; cursor: pointer; font-family: 'Cormorant Garamond', serif;">
                         <i class="fas fa-paper-plane"></i> Enviar sugerencia
                     </button>
@@ -231,7 +235,7 @@
                     <h2><i class="fab fa-whatsapp"></i> Confirmación</h2>
                     <p>Tu presencia es muy importante para nosotros.<br>Por favor, confirmarnos antes del 15 de Diciembre de 2035</p>
                     
-                    <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 20px;">
+                    <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 20px; align-items: center;">
                         <a href="https://wa.me/56966529597?text=Hola,%20confirmo%20mi%20asistencia%20al%20gran%20día%20de%20Daniel%20y%20Fernanda" class="rsvp-btn primary" target="_blank" style="display: inline-block; text-decoration: none;">
                             <i class="fab fa-whatsapp"></i> ¡Confirmar con mucho cariño!
                         </a>
@@ -240,7 +244,7 @@
                         </a>
                     </div>
                     
-                    <div style="margin-top: 20px; font-size: 0.85rem; color: var(--text-light);">
+                    <div style="margin-top: 20px; font-size: 0.85rem; color: var(--text-secondary);">
                         <i class="fab fa-whatsapp"></i> +56 9 6652 9597<br>
                         <i class="fas fa-envelope"></i> danict090@gmail.com
                     </div>
@@ -342,6 +346,29 @@
     </div>
 
     <script>
+        // ====== THEME TOGGLE ======
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            if (newTheme === 'dark') {
+                html.setAttribute('data-theme', 'dark');
+                localStorage.setItem('boda-theme', 'dark');
+            } else {
+                html.removeAttribute('data-theme');
+                localStorage.setItem('boda-theme', 'light');
+            }
+        }
+
+        // Load saved theme
+        (function() {
+            const savedTheme = localStorage.getItem('boda-theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+
         // ====== MUSIC PLAYER ======
         let isMusicPlaying = false;
         const music = document.getElementById('backgroundMusic');

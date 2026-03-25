@@ -8,6 +8,7 @@
     opacity: 0.15;
     z-index: 0;
     animation: pulse 2s ease-in-out infinite;
+    transition: color var(--transition-speed) ease, opacity var(--transition-speed) ease;
 }
 
 .corner-decor.top-left { top: 10px; left: 15px; }
@@ -60,9 +61,11 @@
     border-radius: 2px;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 2px 2px 0 rgba(92, 64, 51, 0.15);
+    box-shadow: 2px 2px 0 var(--card-shadow);
     width: 80%;
-    max-width: 220px;
+    max-width: 280px;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .rsvp-btn:hover, .rsvp-btn.primary {
@@ -123,11 +126,12 @@
 
 /* Cards */
 .location-card {
-    background: var(--vintage-cream);
+    background: var(--bg-card);
     padding: 18px;
     border-radius: 2px;
-    border: 2px solid var(--vintage-sepia);
-    box-shadow: 3px 3px 0 rgba(92, 64, 51, 0.15);
+    border: 2px solid var(--border-color);
+    box-shadow: 3px 3px 0 var(--card-shadow);
+    transition: background var(--transition-speed) ease, border-color var(--transition-speed) ease;
 }
 
 .date-highlight {

@@ -1,6 +1,6 @@
 /* CSS Variables - Theme Configuration */
 :root {
-    /* Colors */
+    /* Light Mode Colors */
     --vintage-cream: #f5f0e6;
     --vintage-paper: #ebe3d3;
     --vintage-sepia: #8b7355;
@@ -12,7 +12,48 @@
     --text-dark: #3d3d3d;
     --text-light: #7a6f65;
     
+    /* Theme Colors - Light */
+    --bg-primary: linear-gradient(135deg, var(--vintage-paper) 0%, var(--vintage-cream) 50%, #d4c8b8 100%);
+    --bg-card: var(--vintage-cream);
+    --bg-section: var(--vintage-paper);
+    --text-primary: var(--text-dark);
+    --text-secondary: var(--text-light);
+    --border-color: var(--vintage-sepia);
+    --gold-bright: #d4a017;
+    --card-shadow: rgba(92, 64, 51, 0.2);
+    --overlay-bg: rgba(0, 0, 0, 0.7);
+    --input-bg: var(--vintage-cream);
+    
     /* Typography */
     --font-display: 'Libre Baskerville', serif;
     --font-body: 'Cormorant Garamond', serif;
+    
+    /* Transitions */
+    --transition-speed: 0.3s;
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+    --vintage-cream: #1a1a1a;
+    --vintage-paper: #242424;
+    --vintage-sepia: #a89070;
+    --vintage-brown: #d4c4a8;
+    --vintage-gold: #d4a017;
+    --vintage-rose: #8b6b6b;
+    --vintage-green: #5a7a5a;
+    --vintage-red: #b85454;
+    --text-dark: #e8e4dc;
+    --text-light: #a89f94;
+    
+    /* Theme Colors - Dark */
+    --bg-primary: linear-gradient(135deg, #121212 0%, #1e1e1e 50%, #0d0d0d 100%);
+    --bg-card: #1e1e1e;
+    --bg-section: #161616;
+    --text-primary: #e8e4dc;
+    --text-secondary: #a89f94;
+    --border-color: #4a4a4a;
+    --gold-bright: #f0c14b;
+    --card-shadow: rgba(0, 0, 0, 0.5);
+    --overlay-bg: rgba(0, 0, 0, 0.85);
+    --input-bg: #2a2a2a;
 }
