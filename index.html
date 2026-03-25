@@ -342,6 +342,9 @@
         <button class="close-photo-modal" onclick="event.stopPropagation(); closePhotoModal()">
             <i class="fas fa-times"></i>
         </button>
+        <button class="download-photo-modal" onclick="event.stopPropagation(); downloadCurrentPhoto()">
+            <i class="fas fa-download"></i> Descargar
+        </button>
         <img id="modalImage" src="" alt="Foto ampliada">
     </div>
 
@@ -614,22 +617,58 @@
             emptyMsg.style.display = 'none';
             grid.innerHTML = '';
             
-            photos.forEach(photo => {
+            photos.forEach((photo, index) => {
                 const item = document.createElement('div');
                 item.className = 'photo-item';
-                item.innerHTML = `<img src="${photo.image}" alt="Recuerdo" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect fill=%22%23ebe3d3%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%22 y=%2250%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%238b7355%22%3E📷%3C/text%3E%3C/svg%3E'">`;
+                item.innerHTML = `
+                    <img src="${photo.image}" alt="Recuerdo" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect fill=%22%23ebe3d3%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%22 y=%2250%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%238b7355%22%3E📷%3C/text%3E%3C/svg%3E'">
+                    <div class="photo-actions">
+                        <button class="photo-action-btn view" onclick="event.stopPropagation(); viewPhoto('${photo.image}')" title="Ver">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="photo-action-btn download" onclick="event.stopPropagation(); downloadPhoto('${photo.image}')" title="Descargar">
+                            <i class="fas fa-download"></i>
+                        </button>
+                    </div>
+                `;
                 item.onclick = () => viewPhoto(photo.image);
                 grid.appendChild(item);
             });
         }
 
         // View photo full screen
+        let currentPhotoSrc = '';
         function viewPhoto(imageSrc) {
             const modal = document.getElementById('photoModal');
             const img = document.getElementById('modalImage');
+            currentPhotoSrc = imageSrc;
             img.src = imageSrc;
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
+        }
+
+        // Download current photo
+        function downloadCurrentPhoto() {
+            if (!currentPhotoSrc) return;
+            
+            const link = document.createElement('a');
+            link.href = currentPhotoSrc;
+            link.download = 'foto-boda-' + Date.now() + '.jpg';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            showToast('Foto descargada', 'success');
+        }
+
+        // Download photo from grid
+        function downloadPhoto(imageSrc) {
+            const link = document.createElement('a');
+            link.href = imageSrc;
+            link.download = 'foto-boda-' + Date.now() + '.jpg';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            showToast('Foto descargada', 'success');
         }
 
         // Close photo modal
@@ -655,6 +694,8 @@
         window.handlePhotoUpload = handlePhotoUpload;
         window.viewPhoto = viewPhoto;
         window.closePhotoModal = closePhotoModal;
+        window.downloadPhoto = downloadPhoto;
+        window.downloadCurrentPhoto = downloadCurrentPhoto;
     </script>
 </body>
 </html>
