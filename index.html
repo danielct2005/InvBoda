@@ -500,6 +500,114 @@
             color: var(--text-dark);
         }
 
+        /* Countdown */
+        .countdown-section {
+            background: var(--vintage-cream);
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid var(--vintage-sepia);
+            animation: fadeIn 1s ease;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: var(--vintage-paper);
+            padding: 10px 15px;
+            border-radius: 8px;
+            min-width: 60px;
+            border: 1px solid var(--vintage-sepia);
+        }
+
+        .countdown-number {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.5rem;
+            color: var(--vintage-brown);
+            font-weight: bold;
+        }
+
+        .countdown-label {
+            font-size: 0.7rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .invitation-card {
+            animation: fadeIn 1.2s ease;
+        }
+
+        .hero-section {
+            animation: fadeIn 1s ease 0.3s both;
+        }
+
+        .love-message {
+            animation: fadeIn 1s ease 0.6s both;
+        }
+
+        .details-section, .location-section, .countdown-section, .dress-code {
+            animation: fadeIn 1s ease both;
+        }
+
+        .details-section { animation-delay: 0.9s; }
+        .location-section { animation-delay: 1.1s; }
+        .countdown-section { animation-delay: 1.3s; }
+        .dress-code { animation-delay: 1.5s; }
+
+        .menu-btn {
+            animation: fadeIn 0.5s ease both;
+        }
+        .menu-btn:nth-child(1) { animation-delay: 1.7s; }
+        .menu-btn:nth-child(2) { animation-delay: 1.8s; }
+        .menu-btn:nth-child(3) { animation-delay: 1.9s; }
+
+        .rings-decoration {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .corner-decor {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* More vintage decorations */
+        .floral-border {
+            height: 30px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20'%3E%3Cpath d='M0,10 Q25,0 50,10 T100,10' stroke='%238b7355' fill='none' stroke-width='1'/%3E%3Ccircle cx='0' cy='10' r='3' fill='%23b8860b'/%3E%3Ccircle cx='50' cy='10' r='3' fill='%23b8860b'/%3E%3Ccircle cx='100' cy='10' r='3' fill='%23b8860b'/%3E%3C/svg%3E") repeat-x;
+            background-size: 100px 20px;
+            opacity: 0.6;
+        }
+
+        .section-divider {
+            text-align: center;
+            padding: 10px 0;
+            color: var(--vintage-gold);
+            font-size: 1.2rem;
+        }
+
         .rsvp-section {
             padding: 20px 18px;
             text-align: center;
@@ -1153,6 +1261,54 @@
                     </a>
                 </div>
 
+                <!-- Divisor decorativo -->
+                <div class="section-divider">
+                    <span>❦</span>
+                </div>
+
+                <!-- Cuenta Regresiva -->
+                <div class="countdown-section">
+                    <h2 class="section-title" style="font-size: 1.2rem;">Faltan</h2>
+                    <div class="countdown">
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="days">0</span>
+                            <span class="countdown-label">Días</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="hours">0</span>
+                            <span class="countdown-label">Horas</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="minutes">0</span>
+                            <span class="countdown-label">Minutos</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="seconds">0</span>
+                            <span class="countdown-label">Segundos</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Divisor decorativo -->
+                <div class="section-divider">
+                    <span>❦</span>
+                </div>
+
+                <!-- Código de Vestimenta -->
+                <div class="dress-code">
+                    <div class="dress-code-title">
+                        <i class="fas fa-tshirt"></i> Código de Vestimenta
+                    </div>
+                    <div class="dress-code-text">
+                        Traje formal. Se solicita no usar color blanco para no opacar a la novia.
+                    </div>
+                </div>
+
+                <!-- Divisor decorativo -->
+                <div class="section-divider">
+                    <span>❦</span>
+                </div>
+
                 <!-- Botones secundarios en modales -->
                 <div class="main-menu">
                     <button class="menu-btn" onclick="openModal('modal-regalos')">
@@ -1465,6 +1621,32 @@
                 });
             }
         });
+
+        // Countdown Timer
+        const weddingDate = new Date('December 30, 2035 16:00:00').getTime();
+        
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+            
+            if (distance < 0) {
+                document.querySelector('.countdown').innerHTML = '<p style="font-family: Cormorant Garamond, serif; font-size: 1.2rem; color: var(--vintage-brown);">¡Es el día de la boda!</p>';
+                return;
+            }
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+        }
+        
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
 
         // Show toast notification
         function showToast(message, type = 'info') {
