@@ -3,89 +3,1296 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Photos - Comparte los momentos especiales</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>Boda Daniel & Fernanda - 15 de Junio 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        :root {
+            --vintage-cream: #f5f0e6;
+            --vintage-paper: #ebe3d3;
+            --vintage-sepia: #8b7355;
+            --vintage-brown: #5c4033;
+            --vintage-gold: #b8860b;
+            --vintage-rose: #c9a9a6;
+            --vintage-green: #4a5d4a;
+            --vintage-red: #8b3a3a;
+            --text-dark: #3d3d3d;
+            --text-light: #7a6f65;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: linear-gradient(135deg, var(--vintage-paper) 0%, var(--vintage-cream) 50%, #d4c8b8 100%);
+            min-height: 100vh;
+            color: var(--text-dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Main Container - Full Screen */
+        .main-container {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Corner Decorations */
+        .corner-decor {
+            position: fixed;
+            font-size: 2rem;
+            color: var(--vintage-sepia);
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .corner-decor.top-left { top: 10px; left: 15px; }
+        .corner-decor.top-right { top: 10px; right: 15px; transform: rotate(90deg); }
+        .corner-decor.bottom-left { bottom: 10px; left: 15px; transform: rotate(-90deg); }
+        .corner-decor.bottom-right { bottom: 10px; right: 15px; transform: rotate(180deg); }
+
+        /* Invitation Card - Full Width */
+        .invitation-section {
+            flex: 1;
+            padding: 20px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .invitation-card {
+            background: var(--vintage-cream);
+            border-radius: 2px;
+            box-shadow: 
+                0 20px 60px rgba(92, 64, 51, 0.2),
+                0 0 0 1px var(--vintage-sepia),
+                inset 0 0 80px rgba(139, 115, 85, 0.1);
+            overflow: hidden;
+            border: 3px solid var(--vintage-brown);
+            width: 100%;
+            max-width: 650px;
+        }
+
+        .card-header {
+            height: 5px;
+            background: linear-gradient(90deg, var(--vintage-brown) 0%, var(--vintage-gold) 50%, var(--vintage-brown) 100%);
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 30px 20px 20px;
+            background: linear-gradient(180deg, var(--vintage-cream) 0%, #faf6ed 100%);
+        }
+
+        .ornament-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .ornament-line::before,
+        .ornament-line::after {
+            content: '';
+            height: 1px;
+            width: 40px;
+            background: var(--vintage-sepia);
+        }
+
+        .ornament-icon {
+            color: var(--vintage-gold);
+            font-size: 1rem;
+        }
+
+        .invite-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--vintage-sepia);
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .couple-names {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--vintage-brown);
+            line-height: 1.1;
+            margin-bottom: 8px;
+        }
+
+        .couple-names .ampersand {
+            display: block;
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--vintage-sepia);
+            font-style: italic;
+            margin: 6px 0;
+        }
+
+        .wedding-date-display {
+            display: inline-block;
+            border: 1px solid var(--vintage-sepia);
+            padding: 6px 16px;
+            margin-top: 12px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.95rem;
+            color: var(--vintage-brown);
+            letter-spacing: 1px;
+        }
+
+        .love-message {
+            padding: 20px 18px;
+            text-align: center;
+            background: var(--white);
+            border-top: 1px solid var(--vintage-sepia);
+            border-bottom: 1px solid var(--vintage-sepia);
+            position: relative;
+        }
+
+        .love-message::before,
+        .love-message::after {
+            content: '❧';
+            position: absolute;
+            font-size: 1.2rem;
+            color: var(--vintage-sepia);
+            opacity: 0.4;
+        }
+
+        .love-message::before { top: 8px; left: 10px; }
+        .love-message::after { bottom: 8px; right: 10px; transform: rotate(180deg); }
+
+        .love-message p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            font-style: italic;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .signature {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 0.9rem;
+            color: var(--vintage-sepia);
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        .details-section {
+            padding: 25px 18px;
+            text-align: center;
+            background: var(--vintage-cream);
+        }
+
+        .section-title {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.3rem;
+            color: var(--vintage-brown);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 2px;
+            background: var(--vintage-gold);
+        }
+
+        .date-highlight {
+            background: linear-gradient(135deg, var(--vintage-brown) 0%, #4a3728 100%);
+            color: var(--vintage-cream);
+            padding: 20px 15px;
+            border-radius: 2px;
+            margin-bottom: 20px;
+            position: relative;
+            border: 2px solid var(--vintage-gold);
+        }
+
+        .date-highlight::before {
+            content: '✦';
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: var(--vintage-gold);
+            opacity: 0.3;
+        }
+
+        .date-highlight .date-label {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.85;
+            margin-bottom: 4px;
+        }
+
+        .date-highlight .date-main {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+
+        .date-highlight .time {
+            font-size: 0.95rem;
+            margin-top: 6px;
+            opacity: 0.9;
+        }
+
+        .location-section {
+            padding: 20px 18px 25px;
+            text-align: center;
+            background: var(--vintage-paper);
+            border-top: 1px solid var(--vintage-sepia);
+        }
+
+        .location-card {
+            background: var(--vintage-cream);
+            padding: 18px;
+            border-radius: 2px;
+            border: 2px solid var(--vintage-sepia);
+            box-shadow: 3px 3px 0 rgba(92, 64, 51, 0.15);
+        }
+
+        .location-name {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.2rem;
+            color: var(--vintage-brown);
+            margin-bottom: 8px;
+        }
+
+        .location-address {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .map-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 18px;
+            background: var(--vintage-green);
+            color: var(--vintage-cream);
+            text-decoration: none;
+            border-radius: 2px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--vintage-brown);
+            box-shadow: 2px 2px 0 var(--vintage-brown);
+        }
+
+        .map-button:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 3px 3px 0 var(--vintage-brown);
+            background: var(--vintage-brown);
+        }
+
+        .dress-code {
+            background: var(--vintage-rose);
+            padding: 16px 18px;
+            text-align: center;
+            border-top: 1px solid var(--vintage-sepia);
+        }
+
+        .dress-code-title {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1rem;
+            color: var(--vintage-brown);
+            margin-bottom: 6px;
+        }
+
+        .dress-code-text {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+        }
+
+        .rsvp-section {
+            padding: 20px 18px;
+            text-align: center;
+            background: var(--vintage-cream);
+        }
+
+        .rsvp-title {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.3rem;
+            color: var(--vintage-brown);
+            margin-bottom: 8px;
+        }
+
+        .rsvp-text {
+            color: var(--text-light);
+            margin-bottom: 18px;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        .rsvp-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .rsvp-btn {
+            padding: 12px 24px;
+            border: 2px solid var(--vintage-brown);
+            background: transparent;
+            color: var(--vintage-brown);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.9rem;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 2px 2px 0 rgba(92, 64, 51, 0.15);
+            width: 80%;
+            max-width: 220px;
+        }
+
+        .rsvp-btn:hover, .rsvp-btn.primary {
+            background: var(--vintage-brown);
+            color: var(--vintage-cream);
+        }
+
+        .contact-info {
+            margin-top: 18px;
+            padding-top: 15px;
+            border-top: 1px solid var(--vintage-sepia);
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .contact-info i {
+            color: var(--vintage-red);
+            margin-right: 4px;
+        }
+
+        .footer {
+            background: var(--vintage-brown);
+            color: var(--vintage-cream);
+            text-align: center;
+            padding: 20px;
+        }
+
+        .footer-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.95rem;
+            font-style: italic;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .hashtag {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.1rem;
+            margin-top: 12px;
+            color: var(--vintage-gold);
+        }
+
+        /* ====== MUSIC PLAYER ====== */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+            background: var(--vintage-brown);
+            padding: 10px 15px;
+            border-radius: 25px;
+            box-shadow: 3px 3px 0 var(--vintage-sepia);
+            border: 2px solid var(--vintage-gold);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .music-player:hover {
+            transform: scale(1.05);
+        }
+
+        .music-player.playing {
+            background: var(--vintage-gold);
+        }
+
+        .music-player.playing .music-btn {
+            color: var(--vintage-brown);
+        }
+
+        .music-player.playing .music-label {
+            color: var(--vintage-brown);
+        }
+
+        .music-btn {
+            width: 35px;
+            height: 35px;
+            border: none;
+            border-radius: 50%;
+            background: transparent;
+            color: var(--vintage-cream);
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .music-label {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            color: var(--vintage-cream);
+            font-style: italic;
+        }
+
+        @keyframes musicPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .music-player.playing .music-btn i {
+            animation: musicPulse 2s ease-in-out infinite;
+        }
+
+        /* ====== PHOTOS SECTION ====== */
+        .photos-section {
+            background: var(--vintage-paper);
+            border-top: 3px solid var(--vintage-sepia);
+            padding: 20px 15px;
+        }
+
+        .photos-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .photos-title {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.2rem;
+            color: var(--vintage-brown);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-camera {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: var(--vintage-gold);
+            color: var(--vintage-brown);
+            border: 2px solid var(--vintage-brown);
+            border-radius: 2px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 3px 3px 0 var(--vintage-brown);
+        }
+
+        .btn-camera:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 4px 4px 0 var(--vintage-brown);
+            background: #c9970c;
+        }
+
+        .btn-camera:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .btn-camera i {
+            font-size: 1.1rem;
+        }
+
+        #photoInput {
+            display: none;
+        }
+
+        .photos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .photo-item {
+            aspect-ratio: 1;
+            border-radius: 2px;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            box-shadow: 2px 2px 0 var(--shadow);
+            border: 2px solid var(--vintage-sepia);
+            background: var(--vintage-cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-item.empty {
+            color: var(--vintage-sepia);
+            font-size: 2rem;
+            opacity: 0.3;
+        }
+
+        .empty-message {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-light);
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        /* Loading spinner */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--vintage-gold);
+            border-top: 4px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: white;
+            margin-top: 15px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--vintage-brown);
+            color: var(--vintage-cream);
+            padding: 15px 25px;
+            border-radius: 4px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            z-index: 4000;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        .toast.error {
+            background: var(--vintage-red);
+        }
+
+        .toast.success {
+            background: var(--vintage-green);
+        }
+
+        /* Photo Modal */
+        .photo-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .photo-modal.active {
+            display: flex;
+        }
+
+        .photo-modal img {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 4px;
+            border: 3px solid var(--vintage-gold);
+        }
+
+        .close-photo-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: var(--vintage-cream);
+            border: 2px solid var(--vintage-brown);
+            border-radius: 2px;
+            color: var(--vintage-brown);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .close-photo-modal:hover {
+            background: var(--vintage-red);
+            color: white;
+            border-color: var(--vintage-red);
+        }
+
+        /* ====== MEDIA QUERIES ====== */
+        @media (min-width: 480px) {
+            .invitation-section {
+                padding: 30px 20px;
+            }
+            
+            .hero-section {
+                padding: 40px 30px 25px;
+            }
+            
+            .couple-names {
+                font-size: 2.8rem;
+            }
+            
+            .couple-names .ampersand {
+                font-size: 1.6rem;
+            }
+            
+            .love-message {
+                padding: 28px 30px;
+            }
+            
+            .love-message p {
+                font-size: 1.15rem;
+            }
+            
+            .details-section,
+            .location-section,
+            .rsvp-section {
+                padding: 35px 25px;
+            }
+            
+            .date-highlight {
+                padding: 25px 20px;
+            }
+            
+            .date-highlight .date-main {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .location-card {
+                padding: 22px;
+            }
+            
+            .location-name {
+                font-size: 1.35rem;
+            }
+            
+            .rsvp-buttons {
+                flex-direction: row;
+                justify-content: center;
+            }
+            
+            .rsvp-btn {
+                width: auto;
+            }
+            
+            .photos-section {
+                padding: 25px 20px;
+            }
+            
+            .photos-grid {
+                gap: 12px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .invitation-section {
+                padding: 40px 20px;
+            }
+            
+            .couple-names {
+                font-size: 3.5rem;
+            }
+            
+            .couple-names .ampersand {
+                font-size: 1.8rem;
+            }
+            
+            .love-message {
+                padding: 35px 45px;
+            }
+            
+            .love-message p {
+                font-size: 1.3rem;
+            }
+            
+            .photos-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 15px;
+            }
+        }
+
+        /* Touch */
+        @media (hover: none) {
+            .rsvp-btn:active,
+            .map-button:active,
+            .btn-camera:active {
+                transform: translate(1px, 1px);
+            }
+        }
+
+        @supports (padding: env(safe-area-inset-top)) {
+            .invitation-section {
+                padding-top: calc(20px + env(safe-area-inset-top));
+            }
+            
+            .photos-section {
+                padding-bottom: calc(20px + env(safe-area-inset-bottom));
+            }
+            
+            .music-player {
+                bottom: calc(20px + env(safe-area-inset-bottom));
+                right: calc(20px + env(safe-area-inset-right));
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="app-container">
-        <!-- Header -->
-        <header class="chat-header">
-            <div class="header-content">
-                <div class="couple-info">
-                    <h1>💍 DANIEL Y FERNANDA</h1>
-                    <p class="wedding-date">30 de Diciembre, 2040</p>
-                </div>
-                <div class="header-actions">
-                    <button class="btn-invitation" onclick="openInvitation()">
-                        <i class="fas fa-envelope"></i> Ver Invitación
-                    </button>
-                </div>
-            </div>
-        </header>
+    <span class="corner-decor top-left">❦</span>
+    <span class="corner-decor top-right">❦</span>
+    <span class="corner-decor bottom-left">❦</span>
+    <span class="corner-decor bottom-right">❦</span>
 
-        <!-- Chat Area -->
-        <main class="chat-main">
-            <div class="chat-messages" id="chatMessages">
-                <div class="message system">
-                    <div class="message-content">
-                        <i class="fas fa-heart"></i>
-                        <p>¡Bienvenidos a nuestro chat de bodas! 📸</p>
-                        <p class="sub-text">Comparte las fotos que tomes durante nuestra celebración. ¡Cada momento es invaluable para nosotros!</p>
+    <div class="main-container">
+        <!-- INVITATION SECTION -->
+        <section class="invitation-section">
+            <div class="invitation-card">
+                <div class="card-header"></div>
+
+                <div class="hero-section">
+                    <div class="ornament-line">
+                        <span class="ornament-icon">✦</span>
+                    </div>
+                    
+                    <p class="invite-text">Con grata dicha queremos invitarte</p>
+                    
+                    <h1 class="couple-names">
+                        Daniel
+                        <span class="ampersand">&</span>
+                        Fernanda
+                    </h1>
+                    
+                    <div class="wedding-date-display">
+                        <i class="fas fa-rings-wedding"></i> 15 de Junio, 2026
+                    </div>
+                    
+                    <div class="ornament-line">
+                        <span class="ornament-icon">✦</span>
                     </div>
                 </div>
-                
-                <div class="message system">
-                    <div class="message-content">
-                        <i class="fas fa-camera"></i>
-                        <p>Comparte tus fotos</p>
-                        <p class="sub-text">Haz clic en el botón de cámara para subir tus fotografías</p>
+
+                <div class="love-message">
+                    <p>
+                        Desde que nuestros caminos se cruzaron, 
+                        cada amanecer ha sido más luminoso a tu lado.
+                        <br><br>
+                        Contigo he encontrado el amor más puro y la compañía más verdadera.
+                        Hoy, con el corazón desbordante, te invito a ser parte 
+                        del momento más sagrado de nuestra vida.
+                        <br><br>
+                        <strong>Comenzar juntos un forever.</strong>
+                    </p>
+                    <div class="signature">
+                        Con todo nuestro amor
                     </div>
                 </div>
-            </div>
 
-            <!-- Photo Grid -->
-            <div class="photo-gallery" id="photoGallery">
-                <h3><i class="fas fa-images"></i> Fotos Compartidas</h3>
-                <div class="photos-grid" id="photosGrid">
-                    <!-- Photos will be added here -->
+                <div class="details-section">
+                    <h2 class="section-title">La Ceremonia</h2>
+                    
+                    <div class="date-highlight">
+                        <div class="date-label">Sábado</div>
+                        <div class="date-main">15 de Junio, 2026</div>
+                        <div class="time">A las 16:00 horas</div>
+                    </div>
                 </div>
-            </div>
-        </main>
 
-        <!-- Input Area -->
-        <footer class="chat-input">
-            <div class="input-container">
-                <button class="btn-photo" onclick="document.getElementById('photoInput').click()">
-                    <i class="fas fa-camera"></i>
-                </button>
-                <input type="file" id="photoInput" accept="image/*" multiple hidden onchange="handlePhotoUpload(event)">
-                
-                <input type="text" id="messageInput" placeholder="Escribe un mensaje..." onkeypress="handleKeyPress(event)">
-                
-                <button class="btn-send" onclick="sendMessage()">
-                    <i class="fas fa-paper-plane"></i>
-                </button>
+                <div class="location-section">
+                    <h2 class="section-title">Ubicación</h2>
+                    
+                    <div class="location-card">
+                        <div class="location-name">
+                            <i class="fas fa-church"></i> Colico Norte
+                        </div>
+                        <div class="location-address">
+                            Lugar donde será la ceremonia y la recepción<br>
+                            Colico Norte
+                        </div>
+                    </div>
+                    
+                    <a href="https://maps.app.goo.gl/NJUSuXJGaBo4QSuA7" target="_blank" class="map-button">
+                        <i class="fas fa-map-marker-alt"></i> Ver ubicación
+                    </a>
+                </div>
+
+                <div class="dress-code">
+                    <div class="dress-code-title">
+                        <i class="fas fa-tshirt"></i> Código de Vestimenta
+                    </div>
+                    <div class="dress-code-text">
+                        Traje formal. Se solicita no usar color blanco para no opacar a la novia.
+                    </div>
+                </div>
+
+                <div class="rsvp-section">
+                    <h2 class="rsvp-title">Confirmación</h2>
+                    <p class="rsvp-text">Por favor, confirma antes del 1 de Junio de 2026</p>
+                    
+                    <div class="rsvp-buttons">
+                        <a href="https://wa.me/56966529597?text=Hola,%20confirmo%20mi%20asistencia%20a%20la%20boda%20de%20Daniel%20y%20Fernanda" class="rsvp-btn primary" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Confirmar por WhatsApp
+                        </a>
+                        <a href="mailto:danict090@gmail.com" class="rsvp-btn">
+                            <i class="fas fa-times"></i> No podré asistir
+                        </a>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <i class="fab fa-whatsapp"></i> +56 9 6652 9597<br>
+                        <i class="fas fa-envelope"></i> danict090@gmail.com
+                    </div>
+                </div>
+
+                <div class="footer">
+                    <p class="footer-text">
+                        "El amor es la fuerza más noble del universo.<br>
+                        Dos almas que se encuentran no es casualidad, es destino."
+                    </p>
+                    <div class="hashtag">#DanielYFernanda2026</div>
+                </div>
             </div>
             
-            <div class="guest-counter">
-                <i class="fas fa-users"></i>
-                <span>Invitados conectados: <strong id="guestCount">1</strong></span>
+            <!-- Music Player -->
+            <div class="music-player" id="musicPlayer">
+                <button class="music-btn" id="musicBtn" onclick="toggleMusic()" title="Música de fondo">
+                    <i class="fas fa-music" id="musicIcon"></i>
+                </button>
+                <span class="music-label" id="musicLabel">Música</span>
             </div>
-        </footer>
+            
+            <!-- Audio Element - Replace with your own music URL if desired -->
+            <!-- To change the music, replace the src below with your own URL -->
+            <!-- Free romantic music options (Pixabay - royalty free): -->
+            <!-- Piano romantico: https://cdn.pixabay.com/audio/2022/10/05/audio_6d0f6f3e02.mp3 -->
+            <!-- Boda: https://cdn.pixabay.com/audio/2022/02/07/audio_d1718ab41b.mp3 -->
+            <!-- Violin: https://cdn.pixabay.com/audio/2022/03/10/audio_9d74024f14.mp3 -->
+            <audio id="backgroundMusic" loop preload="auto">
+                <source src="https://cdn.pixabay.com/audio/2022/10/05/audio_6d0f6f3e02.mp3" type="audio/mpeg">
+            </audio>
+        </section>
+
+        <!-- PHOTOS SECTION -->
+        <section class="photos-section">
+            <div class="photos-header">
+                <h2 class="photos-title">
+                    <i class="fas fa-camera-retro"></i> Comparte tus Recuerdos
+                </h2>
+                <button class="btn-camera" id="uploadBtn" onclick="document.getElementById('photoInput').click()">
+                    <i class="fas fa-camera"></i> Subir Fotos
+                </button>
+                <input type="file" id="photoInput" accept="image/*" multiple onchange="handlePhotoUpload(event)">
+            </div>
+            
+            <div class="photos-grid" id="photosGrid">
+                <div class="photo-item empty">
+                    <i class="fas fa-images"></i>
+                </div>
+                <div class="photo-item empty">
+                    <i class="fas fa-images"></i>
+                </div>
+                <div class="photo-item empty">
+                    <i class="fas fa-images"></i>
+                </div>
+            </div>
+            
+            <p class="empty-message" id="emptyMessage">
+                ¡Comparte las fotos que tomes en nuestra boda! 📸<br>
+                Haz clic en "Subir Fotos" para comenzar.
+            </p>
+        </section>
     </div>
 
-    <!-- Invitation Modal -->
-    <div class="modal" id="invitationModal">
-        <div class="modal-content invitation-card">
-            <button class="close-modal" onclick="closeInvitation()">
-                <i class="fas fa-times"></i>
-            </button>
-            <iframe src="invitacion.html" frameborder="0"></iframe>
-        </div>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+        <p class="loading-text">Subiendo foto...</p>
     </div>
 
-    <script src="app.js"></script>
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Photo Modal -->
+    <div class="photo-modal" id="photoModal" onclick="closePhotoModal()">
+        <button class="close-photo-modal" onclick="event.stopPropagation(); closePhotoModal()">
+            <i class="fas fa-times"></i>
+        </button>
+        <img id="modalImage" src="" alt="Foto ampliada">
+    </div>
+
+    <script>
+        // ====== MUSIC PLAYER ======
+        let isMusicPlaying = false;
+        const music = document.getElementById('backgroundMusic');
+        const musicPlayer = document.getElementById('musicPlayer');
+        const musicIcon = document.getElementById('musicIcon');
+        
+        // Set volume
+        music.volume = 0.4;
+        
+        function toggleMusic() {
+            if (isMusicPlaying) {
+                music.pause();
+                musicIcon.className = 'fas fa-music';
+                musicPlayer.classList.remove('playing');
+                isMusicPlaying = false;
+            } else {
+                // Try to play - may need user interaction first
+                const playPromise = music.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        musicIcon.className = 'fas fa-pause';
+                        musicPlayer.classList.add('playing');
+                        isMusicPlaying = true;
+                    }).catch(error => {
+                        console.log('Error playing music:', error);
+                        showToast('Toca el botón para reproducir música', 'info');
+                    });
+                }
+            }
+        }
+        
+        // Handle music ending (for looping)
+        music.addEventListener('ended', function() {
+            music.play();
+        });
+
+        // ====== SUPABASE CONFIGURATION ======
+        // REPLACE THESE WITH YOUR SUPABASE CREDENTIALS
+        const SUPABASE_URL = 'https://dqtvnihchcomgdnkzwub.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRxdHZuaWhjaGNvbWdkbmt6d3ViIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzg4OTc0MDAsImV4cCI6MjA1NDQ3MzQwMH0.M9L4LWi6VatLIXjJbjOsS6A2H-YGPhT6C4f6dSPB2L8';
+        const BUCKET_NAME = 'wedding-photos';
+        
+        let supabase;
+        
+        // Initialize Supabase
+        function initSupabase() {
+            if (SUPABASE_URL === 'YOUR_SUPABASE_URL') {
+                console.log('⚠️ Supabase no configurado. Las fotos se guardarán solo localmente.');
+                return null;
+            }
+            return window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        }
+
+        // Photo handling
+        let photos = [];
+        let isUploading = false;
+
+        // Show toast notification
+        function showToast(message, type = 'info') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = 'toast ' + type;
+            
+            setTimeout(() => toast.classList.add('show'), 10);
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // Show/hide loading
+        function showLoading(message = 'Subiendo foto...') {
+            const overlay = document.getElementById('loadingOverlay');
+            overlay.querySelector('.loading-text').textContent = message;
+            overlay.classList.add('active');
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingOverlay').classList.remove('active');
+        }
+
+        // Load photos from Supabase or localStorage
+        async function loadPhotos() {
+            try {
+                if (!supabase) {
+                    // Local only
+                    const saved = localStorage.getItem('bodaPhotos');
+                    if (saved) {
+                        photos = JSON.parse(saved);
+                    }
+                } else {
+                    // Try to load from Supabase
+                    const { data, error } = await supabase
+                        .storage
+                        .from(BUCKET_NAME)
+                        .list();
+                    
+                    if (error) {
+                        console.log('Error cargando fotos:', error);
+                        // Fallback to local
+                        const saved = localStorage.getItem('bodaPhotos');
+                        if (saved) photos = JSON.parse(saved);
+                    } else if (data && data.length > 0) {
+                        // Get public URLs for each file
+                        photos = await Promise.all(
+                            data.map(async (file) => {
+                                const { data: { publicUrl } } = supabase
+                                    .storage
+                                    .from(BUCKET_NAME)
+                                    .getPublicUrl(file.name);
+                                return {
+                                    id: file.id,
+                                    image: publicUrl,
+                                    name: file.name,
+                                    created_at: file.created_at
+                                };
+                            })
+                        );
+                        // Sort by date, newest first
+                        photos.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+                    }
+                }
+            } catch (err) {
+                console.log('Error:', err);
+                const saved = localStorage.getItem('bodaPhotos');
+                if (saved) photos = JSON.parse(saved);
+            }
+            
+            renderPhotos();
+        }
+
+        // Save to localStorage as backup
+        function savePhotosLocal() {
+            localStorage.setItem('bodaPhotos', JSON.stringify(photos));
+        }
+
+        // Handle photo upload
+        async function handlePhotoUpload(event) {
+            if (isUploading) return;
+            
+            const files = event.target.files;
+            if (!files || files.length === 0) return;
+
+            isUploading = true;
+            document.getElementById('uploadBtn').disabled = true;
+
+            try {
+                if (!supabase) {
+                    // Local storage only mode
+                    for (const file of Array.from(files)) {
+                        if (file.type.startsWith('image/')) {
+                            const reader = new FileReader();
+                            
+                            await new Promise((resolve, reject) => {
+                                reader.onload = (e) => {
+                                    photos.unshift({
+                                        id: Date.now() + Math.random(),
+                                        image: e.target.result,
+                                        time: new Date().toLocaleDateString('es-CL')
+                                    });
+                                    savePhotosLocal();
+                                    resolve();
+                                };
+                                reader.onerror = reject;
+                                reader.readAsDataURL(file);
+                            });
+                        }
+                    }
+                    showToast('¡Foto guardada localmente!', 'success');
+                } else {
+                    // Upload to Supabase
+                    for (const file of Array.from(files)) {
+                        if (file.type.startsWith('image/')) {
+                            showLoading('Subiendo foto...');
+                            
+                            const fileName = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}-${file.name}`;
+                            
+                            const { data, error } = await supabase
+                                .storage
+                                .from(BUCKET_NAME)
+                                .upload(fileName, file);
+                            
+                            if (error) {
+                                console.error('Error uploading:', error);
+                                showToast('Error al subir la foto', 'error');
+                                continue;
+                            }
+                            
+                            // Get public URL
+                            const { data: { publicUrl } } = supabase
+                                .storage
+                                .from(BUCKET_NAME)
+                                .getPublicUrl(fileName);
+                            
+                            photos.unshift({
+                                id: data.id || Date.now(),
+                                image: publicUrl,
+                                name: fileName,
+                                created_at: new Date().toISOString()
+                            });
+                            
+                            hideLoading();
+                            showToast('¡Foto subida correctamente!', 'success');
+                        }
+                    }
+                }
+                
+                renderPhotos();
+            } catch (err) {
+                console.error('Error:', err);
+                showToast('Error al procesar la foto', 'error');
+            } finally {
+                isUploading = false;
+                document.getElementById('uploadBtn').disabled = false;
+                event.target.value = '';
+            }
+        }
+
+        // Render photos
+        function renderPhotos() {
+            const grid = document.getElementById('photosGrid');
+            const emptyMsg = document.getElementById('emptyMessage');
+            
+            if (photos.length === 0) {
+                grid.innerHTML = `
+                    <div class="photo-item empty"><i class="fas fa-images"></i></div>
+                    <div class="photo-item empty"><i class="fas fa-images"></i></div>
+                    <div class="photo-item empty"><i class="fas fa-images"></i></div>
+                `;
+                emptyMsg.style.display = 'block';
+                return;
+            }
+            
+            emptyMsg.style.display = 'none';
+            grid.innerHTML = '';
+            
+            photos.forEach(photo => {
+                const item = document.createElement('div');
+                item.className = 'photo-item';
+                item.innerHTML = `<img src="${photo.image}" alt="Recuerdo" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect fill=%22%23ebe3d3%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%22 y=%2250%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%238b7355%22%3E📷%3C/text%3E%3C/svg%3E'">`;
+                item.onclick = () => viewPhoto(photo.image);
+                grid.appendChild(item);
+            });
+        }
+
+        // View photo full screen
+        function viewPhoto(imageSrc) {
+            const modal = document.getElementById('photoModal');
+            const img = document.getElementById('modalImage');
+            img.src = imageSrc;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close photo modal
+        function closePhotoModal() {
+            const modal = document.getElementById('photoModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close on escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closePhotoModal();
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', async () => {
+            supabase = initSupabase();
+            await loadPhotos();
+        });
+    </script>
 </body>
 </html>
