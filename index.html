@@ -7,7 +7,7 @@
     <title>Boda Daniel & Fernanda - 15 de Junio 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Supabase library removed for now - using local storage only -->
     <style>
         :root {
             --vintage-cream: #f5f0e6;
@@ -932,25 +932,12 @@
     </div>
 
     <script>
-        // ====== SUPABASE CONFIGURATION ======
-        const SUPABASE_URL = 'https://dqtvnihchcomgdnkzwub.supabase.co';
-        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRxdHZuaWhjaGNvbWdkbmt6d3ViIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzg4OTc0MDAsImV4cCI6MjA1NDQ3MzQwMH0.M9L4LWi6VatLIXjJbjOsS6A2H-YGPhT6C4f6dSPB2L8';
-        const BUCKET_NAME = 'wedding-photos';
+        // ====== PHOTOS - Using Local Storage ======
+        // To enable cloud storage, add Supabase library and configure
         
-        // Initialize Supabase - avoiding global variable conflict
-        function initSupabaseLib() {
-            // The library creates a global 'supabase' object
-            if (typeof window.supabase === 'undefined') {
-                console.log('⚠️ Supabase no cargado. Fotos en modo local.');
-                return null;
-            }
-            return window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-        }
-
         // Photo handling
         let photos = [];
         let isUploading = false;
-        let supabaseLibClient = null;
 
         // Show toast notification
         function showToast(message, type = 'info') {
@@ -973,46 +960,12 @@
             document.getElementById('loadingOverlay').classList.remove('active');
         }
 
-        // Load photos from Supabase or localStorage
+        // Load photos from localStorage
         async function loadPhotos() {
             try {
-                if (!supabaseLibClient) {
-                    // Local only
-                    const saved = localStorage.getItem('bodaPhotos');
-                    if (saved) {
-                        photos = JSON.parse(saved);
-                    }
-                } else {
-                    // Try to load from Supabase
-                    const { data, error } = await supabaseLibClient
-                        .storage
-                        .from(BUCKET_NAME)
-                        .list();
-                    
-                    if (error) {
-                        console.log('Error cargando fotos:', error);
-                        // Fallback to local
-                        const saved = localStorage.getItem('bodaPhotos');
-                        if (saved) photos = JSON.parse(saved);
-                    } else if (data && data.length > 0) {
-                        // Get public URLs for each file
-                        photos = await Promise.all(
-                            data.map(async (file) => {
-                                const { data: { publicUrl } } = supabaseLibClient
-                                    .storage
-                                    .from(BUCKET_NAME)
-                                    .getPublicUrl(file.name);
-                                return {
-                                    id: file.id,
-                                    image: publicUrl,
-                                    name: file.name,
-                                    created_at: file.created_at
-                                };
-                            })
-                        );
-                        // Sort by date, newest first
-                        photos.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-                    }
+                const saved = localStorage.getItem('bodaPhotos');
+                if (saved) {
+                    photos = JSON.parse(saved);
                 }
             } catch (err) {
                 console.log('Error:', err);
@@ -1028,7 +981,7 @@
             localStorage.setItem('bodaPhotos', JSON.stringify(photos));
         }
 
-        // Handle photo upload
+        // Handle photo upload - local storage only
         async function handlePhotoUpload(event) {
             if (isUploading) return;
             
@@ -1039,66 +992,26 @@
             document.getElementById('uploadBtn').disabled = true;
 
             try {
-                if (!supabaseLibClient) {
-                    // Local storage only mode
-                    for (const file of Array.from(files)) {
-                        if (file.type.startsWith('image/')) {
-                            const reader = new FileReader();
-                            
-                            await new Promise((resolve, reject) => {
-                                reader.onload = (e) => {
-                                    photos.unshift({
-                                        id: Date.now() + Math.random(),
-                                        image: e.target.result,
-                                        time: new Date().toLocaleDateString('es-CL')
-                                    });
-                                    savePhotosLocal();
-                                    resolve();
-                                };
-                                reader.onerror = reject;
-                                reader.readAsDataURL(file);
-                            });
-                        }
-                    }
-                    showToast('¡Foto guardada localmente!', 'success');
-                } else {
-                    // Upload to Supabase
-                    for (const file of Array.from(files)) {
-                        if (file.type.startsWith('image/')) {
-                            showLoading('Subiendo foto...');
-                            
-                            const fileName = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}-${file.name}`;
-                            
-                            const { data, error } = await supabase
-                                .storage
-                                .from(BUCKET_NAME)
-                                .upload(fileName, file);
-                            
-                            if (error) {
-                                console.error('Error uploading:', error);
-                                showToast('Error al subir la foto', 'error');
-                                continue;
-                            }
-                            
-                            // Get public URL
-                            const { data: { publicUrl } } = supabase
-                                .storage
-                                .from(BUCKET_NAME)
-                                .getPublicUrl(fileName);
-                            
-                            photos.unshift({
-                                id: data.id || Date.now(),
-                                image: publicUrl,
-                                name: fileName,
-                                created_at: new Date().toISOString()
-                            });
-                            
-                            hideLoading();
-                            showToast('¡Foto subida correctamente!', 'success');
-                        }
+                for (const file of Array.from(files)) {
+                    if (file.type.startsWith('image/')) {
+                        const reader = new FileReader();
+                        
+                        await new Promise((resolve, reject) => {
+                            reader.onload = (e) => {
+                                photos.unshift({
+                                    id: Date.now() + Math.random(),
+                                    image: e.target.result,
+                                    time: new Date().toLocaleDateString('es-CL')
+                                });
+                                localStorage.setItem('bodaPhotos', JSON.stringify(photos));
+                                resolve();
+                            };
+                            reader.onerror = reject;
+                            reader.readAsDataURL(file);
+                        });
                     }
                 }
-                
+                showToast('¡Foto guardada!', 'success');
                 renderPhotos();
             } catch (err) {
                 console.error('Error:', err);
@@ -1162,12 +1075,10 @@
 
         // Initialize
         document.addEventListener('DOMContentLoaded', async () => {
-            supabaseLibClient = initSupabaseLib();
             await loadPhotos();
         });
 
         // Make functions globally accessible for HTML events
-        window.toggleMusic = toggleMusic;
         window.handlePhotoUpload = handlePhotoUpload;
         window.viewPhoto = viewPhoto;
         window.closePhotoModal = closePhotoModal;
