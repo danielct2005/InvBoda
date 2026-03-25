@@ -1041,25 +1041,14 @@
                     </h2>
                     <p class="gifts-text">
                         Tu presencia en nuestro día es el mejor regalo. 
-                        Si deseas enviarnos un detalle, puedes hacerlo de las siguientes maneras:
+                        Si deseas enviarnos un detalle, puedes hacerlo mediante transferencia:
                     </p>
                     
-                    <div class="gift-options">
-                        <a href="#" class="gift-btn" onclick="showGiftInfo()">
-                            <i class="fas fa-envelope-open-text"></i> Sobre de regalo
-                        </a>
-                        
-                        <a href="#" class="gift-btn" onclick="showGiftInfo()">
-                            <i class="fas fa-university"></i> Transferencia bancaria
-                        </a>
-                    </div>
-                    
-                    <div class="gift-info" id="giftInfo" style="display: none;">
-                        <p><strong>Datos de cuenta:</strong></p>
-                        <p>[Aquí van los datos de tu cuenta bancaria]</p>
-                        <p style="margin-top: 10px; font-size: 0.85rem; color: var(--text-light);">
-                            Para actualizar los datos, contacta a los novios
-                        </p>
+                    <div class="gift-info">
+                        <p><strong>Nombre:</strong> Daniel Alonso Ceballos Troncoso</p>
+                        <p><strong>RUT:</strong> 21.775.516-6</p>
+                        <p><strong>Banco:</strong> Banco Estado</p>
+                        <p><strong>Tipo:</strong> Cuenta Vista</p>
                     </div>
                 </div>
 
@@ -1197,18 +1186,6 @@
         // Photo handling
         let photos = [];
         let isUploading = false;
-
-        // Show gift info
-        function showGiftInfo() {
-            const giftInfo = document.getElementById('giftInfo');
-            if (giftInfo.style.display === 'none') {
-                giftInfo.style.display = 'block';
-                showToast('Datos de cuenta mostrados', 'success');
-            } else {
-                giftInfo.style.display = 'none';
-            }
-            event.preventDefault();
-        }
 
         // Show toast notification
         function showToast(message, type = 'info') {
