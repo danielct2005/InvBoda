@@ -1092,43 +1092,19 @@
                         Fernanda
                     </h1>
                     
-                    <div class="wedding-date-display">
-                        <i class="fas fa-rings-wedding"></i> 30 de Diciembre, 2035
-                    </div>
-                    
                     <!-- Decorative Rings -->
                     <div class="rings-decoration">
                         <div class="ring"></div>
                         <div class="ring"></div>
                     </div>
                     
+                    <div class="wedding-date-display">
+                        <i class="fas fa-rings-wedding"></i> 30 de Diciembre, 2035
+                    </div>
+                    
                     <div class="ornament-line">
                         <span class="ornament-icon">✦</span>
                     </div>
-                </div>
-
-                <div class="main-menu">
-                    <button class="menu-btn" onclick="openModal('modal-invitacion')">
-                        <i class="fas fa-heart"></i> Nuestra Historia
-                    </button>
-                    <button class="menu-btn" onclick="openModal('modal-fecha')">
-                        <i class="fas fa-calendar-alt"></i> Fecha y Hora
-                    </button>
-                    <button class="menu-btn" onclick="openModal('modal-ubicacion')">
-                        <i class="fas fa-map-marker-alt"></i> Ubicación
-                    </button>
-                    <button class="menu-btn" onclick="openModal('modal-fotos')">
-                        <i class="fas fa-camera"></i> Fotos
-                    </button>
-                    <button class="menu-btn" onclick="openModal('modal-regalos')">
-                        <i class="fas fa-gift"></i> Regalos
-                    </button>
-                    <button class="menu-btn" onclick="openModal('modal-cancion')">
-                        <i class="fas fa-music"></i> Sugerir Canción
-                    </button>
-                    <button class="menu-btn" onclick="openModal('modal-confirmar')">
-                        <i class="fab fa-whatsapp"></i> Confirmar Asistencia
-                    </button>
                 </div>
 
                 <div class="love-message">
@@ -1142,64 +1118,61 @@
                         <br><br>
                         <strong>Comenzar juntos un forever.</strong>
                     </p>
+                    
+                    <div style="margin-top: 20px; padding: 15px; background: var(--vintage-paper); border-radius: 4px; font-style: italic; border-left: 3px solid var(--vintage-gold);">
+                        <p style="margin-bottom: 8px; font-size: 0.95rem;">"Por esto el hombre abandonará a su padre y a su madre, y se unirá a su esposa, y los dos serán una sola carne."</p>
+                        <p style="font-size: 0.8rem; color: var(--text-light);">Mateo 19:5-6</p>
+                    </div>
+                    
                     <div class="signature">
                         Con todo nuestro amor
                     </div>
+                </div>
+
+                <div class="details-section">
+                    <h2 class="section-title">La Ceremonia</h2>
+                    <div class="date-highlight">
+                        <div class="date-label">Lunes</div>
+                        <div class="date-main">30 de Diciembre, 2035</div>
+                        <div class="time">A las 16:00 horas</div>
+                    </div>
+                </div>
+
+                <div class="location-section">
+                    <h2 class="section-title">Ubicación</h2>
+                    <div class="location-card">
+                        <div class="location-name">
+                            <i class="fas fa-church"></i> Colico Norte
+                        </div>
+                        <div class="location-address">
+                            Lugar donde será la ceremonia y la recepción
+                        </div>
+                    </div>
+                    <a href="https://maps.app.goo.gl/NJUSuXJGaBo4QSuA7" target="_blank" class="map-button">
+                        <i class="fas fa-map-marker-alt"></i> Ver ubicación
+                    </a>
+                </div>
+
+                <!-- Botones secundarios en modales -->
+                <div class="main-menu">
+                    <button class="menu-btn" onclick="openModal('modal-fotos')">
+                        <i class="fas fa-camera"></i> Fotos
+                    </button>
+                    <button class="menu-btn" onclick="openModal('modal-regalos')">
+                        <i class="fas fa-gift"></i> Regalos
+                    </button>
+                    <button class="menu-btn" onclick="openModal('modal-cancion')">
+                        <i class="fas fa-music"></i> Sugerir Canción
+                    </button>
+                    <button class="menu-btn" onclick="openModal('modal-confirmar')">
+                        <i class="fab fa-whatsapp"></i> Confirmar Asistencia
+                    </button>
                 </div>
             </div>
         </section>
 
         <!-- MODALES -->
         
-        <!-- Modal Invitación -->
-        <div class="modal-overlay" id="modal-invitacion">
-            <div class="modal-content">
-                <button class="modal-close" onclick="closeModal('modal-invitacion')">&times;</button>
-                <div class="modal-body">
-                    <h2><i class="fas fa-heart"></i> Nuestra Historia</h2>
-                    <p>Desde que nuestros caminos se cruzaron, cada amanecer ha sido más luminoso a tu lado.</p>
-                    <p>Contigo he encontrado el amor más puro y la compañía más verdadera. Hoy, con el corazón desbordante, te invito a ser parte del momento más sagrado de nuestra vida.</p>
-                    <p><strong>Comenzar juntos un forever.</strong></p>
-                    <p style="margin-top: 20px; font-style: italic;">Con todo nuestro amor,<br>Daniel & Fernanda</p>
-                    <div style="margin-top: 25px; padding: 15px; background: var(--vintage-paper); border-radius: 4px; font-style: italic; border-left: 3px solid var(--vintage-gold);">
-                        <p style="margin-bottom: 8px;">"Por esto el hombre abandonará a su padre y a su madre, y se unirá a su esposa, y los dos serán una sola carne."</p>
-                        <p style="font-size: 0.85rem; color: var(--text-light);">Mateo 19:5-6</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal Fecha y Hora -->
-        <div class="modal-overlay" id="modal-fecha">
-            <div class="modal-content">
-                <button class="modal-close" onclick="closeModal('modal-fecha')">&times;</button>
-                <div class="modal-body">
-                    <h2><i class="fas fa-calendar-alt"></i> Fecha y Hora</h2>
-                    <p><strong>Día:</strong> Lunes 30 de Diciembre, 2035</p>
-                    <p><strong>Hora:</strong> 16:00 horas</p>
-                    <p style="margin-top: 15px; padding: 15px; background: var(--vintage-paper); border-radius: 4px;">
-                        <i class="fas fa-church"></i> Ceremonia y Recepción<br>
-                        <span style="font-size: 0.95rem;">Colico Norte</span>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal Ubicación -->
-        <div class="modal-overlay" id="modal-ubicacion">
-            <div class="modal-content">
-                <button class="modal-close" onclick="closeModal('modal-ubicacion')">&times;</button>
-                <div class="modal-body">
-                    <h2><i class="fas fa-map-marker-alt"></i> Ubicación</h2>
-                    <p><strong>Colico Norte</strong></p>
-                    <p>Lugar donde será la ceremonia y la recepción</p>
-                    <a href="https://maps.app.goo.gl/NJUSuXJGaBo4QSuA7" target="_blank" class="rsvp-btn primary" style="display: inline-block; margin-top: 15px; text-decoration: none;">
-                        <i class="fas fa-external-link-alt"></i> Ver en Google Maps
-                    </a>
-                </div>
-            </div>
-        </div>
-
         <!-- Modal Fotos -->
         <div class="modal-overlay" id="modal-fotos">
             <div class="modal-content">
