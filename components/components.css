@@ -1,84 +1,185 @@
-/* Components - Reusable UI Components */
+/**
+ * =============================================================================
+ * components/components.css - Componentes UI Reutilizables
+ * =============================================================================
+ * Este archivo contiene estilos para componentes reutilizables como
+ * decoraciones, botones, tarjetas, notificaciones y elementos de interfaz.
+ */
 
-/* Corner Decorations */
+/**
+ * =============================================================================
+ * DECORACIONES DE ESQUINA (Corner Decorations)
+ * =============================================================================
+ * Elementos decorativos fijos en las 4 esquinas de la pantalla
+ */
+
+/**
+ * Estilos base para decoraciones de esquina
+ * Posicionadas fijas en las esquinas de la pantalla
+ * @selector .corner-decor - Clase base para todas las decoraciones
+ */
 .corner-decor {
-    position: fixed;
-    font-size: 2rem;
-    color: var(--vintage-sepia);
-    opacity: 0.15;
-    z-index: 0;
-    animation: pulse 2s ease-in-out infinite;
+    position: fixed;                     /* Fijo en la pantalla */
+    font-size: 2rem;                     /* Tamaño grande del icono */
+    color: var(--vintage-sepia);         /* Color sepia del tema */
+    opacity: 0.15;                       /* Muy transparente */
+    z-index: 0;                          /* Detrás del contenido */
+    animation: pulse 2s ease-in-out infinite;  /* Animación de pulsación continua */
     transition: color var(--transition-speed) ease, opacity var(--transition-speed) ease;
 }
 
-.corner-decor.top-left { top: 10px; left: 15px; }
-.corner-decor.top-right { top: 10px; right: 15px; transform: rotate(90deg); }
-.corner-decor.bottom-left { bottom: 10px; left: 15px; transform: rotate(-90deg); }
-.corner-decor.bottom-right { bottom: 10px; right: 15px; transform: rotate(180deg); }
+/**
+ * Posicionamiento específico de cada esquina
+ * @selector .corner-decor.top-left - Esquina superior izquierda
+ */
+.corner-decor.top-left { 
+    top: 10px; left: 15px;               /* Esquina superior izquierda */
+}
 
-/* Decorative Rings */
+/**
+ * @selector .corner-decor.top-right - Esquina superior derecha
+ */
+.corner-decor.top-right { 
+    top: 10px; right: 15px;              /* Esquina superior derecha */
+    transform: rotate(90deg);            /* Rotado 90 grados */
+}
+
+/**
+ * @selector .corner-decor.bottom-left - Esquina inferior izquierda
+ */
+.corner-decor.bottom-left { 
+    bottom: 10px; left: 15px;           /* Esquina inferior izquierda */
+    transform: rotate(-90deg);           /* Rotado -90 grados */
+}
+
+/**
+ * @selector .corner-decor.bottom-right - Esquina inferior derecha
+ */
+.corner-decor.bottom-right { 
+    bottom: 10px; right: 15px;          /* Esquina inferior derecha */
+    transform: rotate(180deg);           /* Rotado 180 grados */
+}
+
+/**
+ * =============================================================================
+ * DECORACIÓN DE ANILLOS (Decorative Rings)
+ * =============================================================================
+ * Dos anillos entrelazados que simbolizan el matrimonio
+ */
+
+/**
+ * Contenedor de los anillos decorativos
+ * Centra los anillos y aplica animación de flotación
+ * @selector .rings-decoration - Contenedor de anillos
+ */
 .rings-decoration {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 15px 0;
-    animation: float 3s ease-in-out infinite;
+    animation: float 3s ease-in-out infinite;  /* Animación continua de flotación */
 }
 
+/**
+ * Estilos individuales de cada anillo
+ * Círculos con borde dorado
+ * @selector .ring - Clase para cada anillo individual
+ */
 .ring {
-    width: 35px;
-    height: 35px;
-    border: 3px solid var(--vintage-gold);
-    border-radius: 50%;
+    width: 35px;                        /* Ancho del anillo */
+    height: 35px;                       /* Alto del anillo */
+    border: 3px solid var(--vintage-gold);  /* Borde dorado */
+    border-radius: 50%;                 /* Forma circular perfecta */
     position: relative;
 }
 
+/**
+ * Primer anillo (izquierdo)
+ * Position z-index menor para aparecer detrás
+ * @selector .ring:first-child - Primer elemento hijo
+ */
 .ring:first-child {
-    margin-right: -8px;
+    margin-right: -8px;                 /* Se superpone al segundo */
     z-index: 1;
 }
 
+/**
+ * Segundo anillo (derecho)
+ * Position z-index mayor para aparecer adelante
+ * @selector .ring:last-child - Último elemento hijo
+ */
 .ring:last-child {
     z-index: 2;
 }
 
-/* Section Dividers */
+/**
+ * =============================================================================
+ * DIVISORES DE SECCIÓN (Section Dividers)
+ * =============================================================================
+ * Elementos decorativos que separan visualmente las secciones
+ */
+
+/**
+ * Contenedor del divisor
+ * Centra el icono decorativo
+ * @selector .section-divider - Contenedor del divisor
+ */
 .section-divider {
     text-align: center;
     padding: 10px 0;
-    color: var(--vintage-gold);
+    color: var(--vintage-gold);         /* Color dorado */
     font-size: 1.2rem;
 }
 
-/* Buttons */
+/**
+ * =============================================================================
+ * BOTONES (Buttons)
+ * =============================================================================
+ */
+
+/**
+ * Botón de confirmación RSVP
+ * Estilo vintage con borde y sombra
+ * @selector .rsvp-btn - Botón de respuesta RSVP
+ */
 .rsvp-btn {
-    padding: 12px 24px;
-    border: 2px solid var(--vintage-brown);
-    background: transparent;
-    color: var(--vintage-brown);
+    padding: 12px 24px;                 /* Espaciado interno */
+    border: 2px solid var(--vintage-brown);  /* Borde marrón */
+    background: transparent;            /* Fondo transparente */
+    color: var(--vintage-brown);         /* Color del texto */
     font-family: 'Cormorant Garamond', serif;
     font-size: 0.9rem;
-    border-radius: 2px;
+    border-radius: 2px;                  /* Bordes ligeramente redondeados */
     cursor: pointer;
     transition: all var(--transition-speed) ease;
-    box-shadow: 2px 2px 0 var(--card-shadow);
-    width: 80%;
-    max-width: 280px;
-    margin: 0 auto;
+    box-shadow: 2px 2px 0 var(--card-shadow);  /* Sombra estilo botón físico */
+    width: 80%;                         /* Ancho relativo */
+    max-width: 280px;                   /* Ancho máximo */
+    margin: 0 auto;                     /* Centrado */
     text-align: center;
 }
 
+/**
+ * Estados hover y primary del botón RSVP
+ * Invierte colores al pasar el mouse
+ * @selector .rsvp-btn:hover, .rsvp-btn.primary - Estados interactivos
+ */
 .rsvp-btn:hover, .rsvp-btn.primary {
     background: var(--vintage-brown);
     color: var(--vintage-cream);
 }
 
+/**
+ * Botón de ubicación/mapa
+ * Estilo verde con icono de ubicación
+ * @selector .map-button - Botón para ver ubicación en mapa
+ */
 .map-button {
     display: inline-flex;
     align-items: center;
     gap: 6px;
     padding: 10px 18px;
-    background: var(--vintage-green);
+    background: var(--vintage-green);   /* Verde para acción de ubicación */
     color: var(--vintage-cream);
     text-decoration: none;
     border-radius: 2px;
@@ -90,20 +191,29 @@
     box-shadow: 2px 2px 0 var(--vintage-brown);
 }
 
+/**
+ * Hover del botón de mapa
+ * @selector .map-button:hover - Estado al pasar el mouse
+ */
 .map-button:hover {
     transform: translate(-1px, -1px);
     box-shadow: 3px 3px 0 var(--vintage-brown);
     background: var(--vintage-brown);
 }
 
+/**
+ * Botón de cámara para subir fotos
+ * Estilo dorado con icono de cámara
+ * @selector .btn-camera - Botón para subir fotografías
+ */
 .btn-camera {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 8px;
     padding: 12px 20px;
-    background: var(--vintage-gold);
-    color: var(--vintage-brown);
+    background: var(--vintage-gold);    /* Fondo dorado */
+    color: var(--vintage-brown);         /* Texto marrón */
     border: 2px solid var(--vintage-brown);
     border-radius: 2px;
     font-family: 'Cormorant Garamond', serif;
@@ -114,18 +224,36 @@
     box-shadow: 3px 3px 0 var(--vintage-brown);
 }
 
+/**
+ * Hover del botón de cámara
+ * @selector .btn-camera:hover - Estado al pasar el mouse
+ */
 .btn-camera:hover {
     transform: translate(-1px, -1px);
     box-shadow: 4px 4px 0 var(--vintage-brown);
-    background: #c9970c;
+    background: #c9970c;                /* Dorado más oscuro al hover */
 }
 
+/**
+ * Estado deshabilitado del botón de cámara
+ * @selector .btn-camera:disabled - Estado deshabilitado
+ */
 .btn-camera:disabled {
     opacity: 0.6;
     cursor: not-allowed;
 }
 
-/* Cards */
+/**
+ * =============================================================================
+ * TARJETAS (Cards)
+ * =============================================================================
+ */
+
+/**
+ * Tarjeta de ubicación
+ * Estilo con borde y sombra
+ * @selector .location-card - Tarjeta de información de ubicación
+ */
 .location-card {
     background: var(--bg-card);
     padding: 18px;
@@ -135,6 +263,11 @@
     transition: background var(--transition-speed) ease, border-color var(--transition-speed) ease;
 }
 
+/**
+ * Destacado de fecha
+ * Gradiente marrón con texto claro
+ * @selector .date-highlight - Bloque destacado para mostrar la fecha
+ */
 .date-highlight {
     background: linear-gradient(135deg, var(--vintage-brown) 0%, #4a3728 100%);
     color: var(--vintage-cream);
@@ -145,6 +278,11 @@
     border: 2px solid var(--vintage-gold);
 }
 
+/**
+ * Icono decorativo en el destaque de fecha
+ * Posicionado a la derecha
+ * @selector .date-highlight::before - Pseudo-elemento decorativo
+ */
 .date-highlight::before {
     content: '✦';
     position: absolute;
@@ -156,12 +294,22 @@
     opacity: 0.3;
 }
 
-/* Toast Notification */
+/**
+ * =============================================================================
+ * NOTIFICACIONES TOAST (Toast Notifications)
+ * =============================================================================
+ */
+
+/**
+ * Contenedor del toast
+ * Aparece en la parte inferior de la pantalla
+ * @selector .toast - Contenedor de notificaciones temporales
+ */
 .toast {
     position: fixed;
     bottom: 30px;
     left: 50%;
-    transform: translateX(-50%) translateY(100px);
+    transform: translateX(-50%) translateY(100px);  /* Oculto por defecto */
     background: var(--vintage-brown);
     color: var(--vintage-cream);
     padding: 15px 25px;
@@ -174,27 +322,47 @@
     transition: all var(--transition-speed) ease;
 }
 
+/**
+ * Estado visible del toast
+ * @selector .toast.show - Estado activo/visible
+ */
 .toast.show {
     transform: translateX(-50%) translateY(0);
     opacity: 1;
 }
 
+/**
+ * Variante de error (rojo)
+ * @selector .toast.error - Estilo para mensajes de error
+ */
 .toast.error {
     background: var(--vintage-red);
 }
 
+/**
+ * Variante de éxito (verde)
+ * @selector .toast.success - Estilo para mensajes exitosos
+ */
 .toast.success {
     background: var(--vintage-green);
 }
 
-/* Loading Overlay */
+/**
+ * =============================================================================
+ * PANTALLA DE CARGA (Loading Overlay)
+ * =============================================================================
+ */
+
+/**
+ * Overlay de carga
+ * Cubre toda la pantalla durante procesos de carga
+ * @selector .loading-overlay - Pantalla de carga mostrada durante uploads
+ */
 .loading-overlay {
-    display: none;
+    display: none;                      /* Oculto por defecto */
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     background: rgba(0, 0, 0, 0.7);
     z-index: 3000;
     justify-content: center;
@@ -202,19 +370,32 @@
     flex-direction: column;
 }
 
+/**
+ * Estado activo del loading overlay
+ * @selector .loading-overlay.active - Estado visible
+ */
 .loading-overlay.active {
     display: flex;
 }
 
+/**
+ * Spinner de carga
+ * Círculo que rota continuamente
+ * @selector .spinner - Indicador visual de carga
+ */
 .spinner {
     width: 50px;
     height: 50px;
     border: 4px solid var(--vintage-gold);
-    border-top: 4px solid transparent;
+    border-top: 4px solid transparent;  /* Transparente para efecto de arco */
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
 
+/**
+ * Texto de carga
+ * @selector .loading-text - Mensaje debajo del spinner
+ */
 .loading-text {
     color: white;
     margin-top: 15px;

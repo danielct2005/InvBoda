@@ -1,68 +1,171 @@
-/* Animations */
+/**
+ * =============================================================================
+ * theme/animations.css - Definiciones de Animaciones
+ * =============================================================================
+ * Este archivo contiene todas laskeyframes y clases de animación
+ * utilizadas en la invitación de boda para dar vida y movimiento
+ * a los diferentes elementos.
+ */
 
-/* Keyframes */
+/**
+ * =============================================================================
+ * KEYFRAMES - Definiciones de Animaciones
+ * =============================================================================
+ * Las keyframes definen los estados de una animación a lo largo del tiempo.
+ */
+
+/**
+ * Animación de fundido de entrada (Fade In)
+ * Usada para elementos que aparecen gradualmente
+ * @keyframes fadeIn - Animación de aparición con desplazamiento vertical
+ */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { 
+        opacity: 0;                      /* Comienza invisible */
+        transform: translateY(20px);     /* Desplazado 20px hacia abajo */
+    }
+    to { 
+        opacity: 1;                      /* Termina completamente visible */
+        transform: translateY(0);        /* En su posición original */
+    }
 }
 
+/**
+ * Animación de pulsación (Pulse)
+ * Efecto de expansión y contracción rítmica
+ * @keyframes pulse - Escala suave hacia arriba y abajo
+ */
 @keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
+    0%, 100% { 
+        transform: scale(1);             /* Tamaño normal */
+    }
+    50% { 
+        transform: scale(1.05);          /* 5% más grande */
+    }
 }
 
+/**
+ * Animación de flotación (Float)
+ * Movimiento sutil de arriba a abajo
+ * @keyframes float - Simula objetos flotando en el aire
+ */
 @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
+    0%, 100% { 
+        transform: translateY(0);        /* Posición base */
+    }
+    50% { 
+        transform: translateY(-5px);     /* 5px hacia arriba */
+    }
 }
 
+/**
+ * Animación de rotación (Spin)
+ * Rotación continua de 360 grados
+ * @keyframes spin - Usada para spinners de carga
+ */
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% { 
+        transform: rotate(0deg);          /* Sin rotación */
+    }
+    100% { 
+        transform: rotate(360deg);       /* Una rotación completa */
+    }
 }
 
+/**
+ * Animación de pulsación musical (Music Pulse)
+ * Variante de pulse para el reproductor de música
+ * @keyframes musicPulse - Pulsación más dinámica
+ */
 @keyframes musicPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
+    0%, 100% { 
+        transform: scale(1);             /* Escala base */
+    }
+    50% { 
+        transform: scale(1.1);            /* 10% más grande */
+    }
 }
 
+/**
+ * Animación de deslizamiento de modal (Modal Slide In)
+ * Animación de entrada para ventanas modales
+ * @keyframes modalSlideIn - Aparece desde arriba con fundido
+ */
 @keyframes modalSlideIn {
     from {
-        opacity: 0;
-        transform: translateY(-20px);
+        opacity: 0;                      /* Invisible al inicio */
+        transform: translateY(-20px);    /* 20px hacia arriba */
     }
     to {
-        opacity: 1;
-        transform: translateY(0);
+        opacity: 1;                      /* Completamente visible */
+        transform: translateY(0);        /* En posición original */
     }
 }
 
-/* Animation Classes */
+/**
+ * =============================================================================
+ * CLASES DE ANIMACIÓN - Aplicación a Elementos
+ * =============================================================================
+ */
+
+/**
+ * Sección Hero - Animación de entrada
+ * Aparece después de 0.3s de retraso
+ */
 .hero-section {
     animation: fadeIn 1s ease 0.3s both;
 }
 
+/**
+ * Mensaje de Amor - Animación de entrada
+ * Aparece después de 0.6s de retraso
+ */
 .love-message {
     animation: fadeIn 1s ease 0.6s both;
 }
 
+/**
+ * Sección de Detalles - Animación de entrada
+ * Aparece después de 0.9s de retraso
+ */
 .details-section { 
     animation: fadeIn 1s ease 0.9s both; 
 }
 
+/**
+ * Sección de Ubicación - Animación de entrada
+ * Aparece después de 1.1s de retraso
+ */
 .location-section { 
     animation: fadeIn 1s ease 1.1s both; 
 }
 
+/**
+ * Sección de Cuenta Regresiva - Animación de entrada
+ * Aparece después de 1.3s de retraso
+ */
 .countdown-section { 
     animation: fadeIn 1s ease 1.3s both; 
 }
 
+/**
+ * Código de Vestimenta - Animación de entrada
+ * Aparece después de 1.5s de retraso
+ */
 .dress-code { 
     animation: fadeIn 1s ease 1.5s both; 
 }
 
-/* Modal Animation */
+/**
+ * =============================================================================
+ * ANIMACIONES DE MODALES
+ * =============================================================================
+ */
+
+/**
+ * Contenido del Modal
+ * Animación de deslizamiento al abrir
+ */
 .modal-content {
     animation: modalSlideIn 0.3s ease;
 }

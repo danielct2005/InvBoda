@@ -1,51 +1,84 @@
-/* CSS Variables - Theme Configuration */
+/**
+ * =============================================================================
+ * theme/variables.css - Variables CSS del Tema
+ * =============================================================================
+ * Este archivo contiene todas las variables CSS que definen los colores,
+ * tipografías y transiciones del tema de la invitación de boda.
+ * El tema soporta modo claro y oscuro.
+ */
+
+/**
+ * Variables del tema en modo claro (por defecto)
+ * Paleta de colores vintage/retro para invitación de boda
+ */
 :root {
-    /* Light Mode Colors */
-    --vintage-cream: #f5f0e6;
-    --vintage-paper: #ebe3d3;
-    --vintage-sepia: #8b7355;
-    --vintage-brown: #5c4033;
-    --vintage-gold: #b8860b;
-    --vintage-rose: #c9a9a6;
-    --vintage-green: #4a5d4a;
-    --vintage-red: #8b3a3a;
-    --text-dark: #3d3d3d;
-    --text-light: #7a6f65;
+    /* 
+     * Colores base del tema vintage
+     * Colores primarios que definen la paleta visual
+     */
+    --vintage-cream: #f5f0e6;       /* Crema principal - fondo suave */
+    --vintage-paper: #ebe3d3;        /* Color papel - fondos secundarios */
+    --vintage-sepia: #8b7355;       /* Sepia - bordes y acentos */
+    --vintage-brown: #5c4033;        /* Marrón oscuro - texto y énfasis */
+    --vintage-gold: #b8860b;        /* Dorado - acentos y decoración */
+    --vintage-rose: #c9a9a6;        /* Rosa vintage - secciones destacadas */
+    --vintage-green: #4a5d4a;       /* Verde oscuro - botones de acción */
+    --vintage-red: #8b3a3a;        /* Rojo vino - errores y acentos */
+    --text-dark: #3d3d3d;          /* Texto oscuro para modo claro */
+    --text-light: #7a6f65;         /* Texto claro/secundario */
     
-    /* Theme Colors - Light */
-    --bg-primary: linear-gradient(135deg, var(--vintage-paper) 0%, var(--vintage-cream) 50%, #d4c8b8 100%);
-    --bg-card: var(--vintage-cream);
-    --bg-section: var(--vintage-paper);
-    --text-primary: var(--text-dark);
-    --text-secondary: var(--text-light);
-    --border-color: var(--vintage-sepia);
-    --gold-bright: #d4a017;
-    --card-shadow: rgba(92, 64, 51, 0.2);
-    --overlay-bg: rgba(0, 0, 0, 0.7);
-    --input-bg: var(--vintage-cream);
+    /* 
+     * Colores del tema para modo claro
+     * Defines la apariencia visual general
+     */
+    --bg-primary: linear-gradient(135deg, var(--vintage-paper) 0%, var(--vintage-cream) 50%, #d4c8b8 100%);  /* Fondo principal con gradiente */
+    --bg-card: var(--vintage-cream);         /* Fondo de tarjetas */
+    --bg-section: var(--vintage-paper);     /* Fondo de secciones */
+    --text-primary: var(--text-dark);       /* Color de texto principal */
+    --text-secondary: var(--text-light);    /* Color de texto secundario */
+    --border-color: var(--vintage-sepia);   /* Color de bordes */
+    --gold-bright: #d4a017;                /* Dorado brillante para efectos */
+    --card-shadow: rgba(92, 64, 51, 0.2);  /* Sombra de tarjetas */
+    --overlay-bg: rgba(0, 0, 0, 0.7);      /* Fondo de superposición */
+    --input-bg: var(--vintage-cream);       /* Fondo de campos de entrada */
     
-    /* Typography */
-    --font-display: 'Libre Baskerville', serif;
-    --font-body: 'Cormorant Garamond', serif;
+    /* 
+     * Tipografías del sitio
+     * Familia de fuentes para diferentes usos
+     */
+    --font-display: 'Libre Baskerville', serif;    /* Para títulos y encabezados */
+    --font-body: 'Cormorant Garamond', serif;      /* Para texto de párrafos */
     
-    /* Transitions */
+    /* 
+     * Velocidad de transiciones
+     * Controla la duración de las animaciones CSS
+     */
     --transition-speed: 0.3s;
 }
 
-/* Dark Mode */
+/**
+ * Tema oscuro (Dark Mode)
+ * Sobrescribe las variables para adaptarse al modo oscuro
+ */
 [data-theme="dark"] {
-    --vintage-cream: #1a1a1a;
-    --vintage-paper: #242424;
-    --vintage-sepia: #a89070;
-    --vintage-brown: #d4c4a8;
-    --vintage-gold: #d4a017;
-    --vintage-rose: #8b6b6b;
-    --vintage-green: #5a7a5a;
-    --vintage-red: #b85454;
-    --text-dark: #e8e4dc;
-    --text-light: #a89f94;
+    /* 
+     * Colores base ajustados para modo oscuro
+     * Inversiones y ajustes para mejor contraste
+     */
+    --vintage-cream: #1a1a1a;        /* Tono oscuro del crema */
+    --vintage-paper: #242424;        /* Tono oscuro del papel */
+    --vintage-sepia: #a89070;       /* Sepia más claro para visibilidad */
+    --vintage-brown: #d4c4a8;       /* Marrón claro para texto */
+    --vintage-gold: #d4a017;       /* Dorado mantiene intensidad */
+    --vintage-rose: #8b6b6b;       /* Rosa más oscuro */
+    --vintage-green: #5a7a5a;      /* Verde ajustado */
+    --vintage-red: #b85454;        /* Rojo más brillante */
+    --text-dark: #e8e4dc;           /* Texto claro para modo oscuro */
+    --text-light: #a89f94;         /* Texto secundario claro */
     
-    /* Theme Colors - Dark */
+    /* 
+     * Colores del tema para modo oscuro
+     */
     --bg-primary: linear-gradient(135deg, #121212 0%, #1e1e1e 50%, #0d0d0d 100%);
     --bg-card: #1e1e1e;
     --bg-section: #161616;
