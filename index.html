@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<!-- Boda Daniel & Fernanda - 15 Junio 2026 v6 - Con música -->
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -16,18 +14,15 @@
         <i class="fas fa-moon"></i>
         <i class="fas fa-sun"></i>
     </button>
-
     <span class="corner-decor top-left">❦</span>
     <span class="corner-decor top-right">❦</span>
     <span class="corner-decor bottom-left">❦</span>
     <span class="corner-decor bottom-right">❦</span>
-
     <div class="main-container">
         <!-- MAIN MENU -->
         <section class="invitation-section">
             <div class="invitation-card">
                 <div class="card-header"></div>
-
                 <div class="hero-section">
                     <div class="ornament-line">
                         <span class="ornament-icon">✦</span>
@@ -55,7 +50,6 @@
                         <span class="ornament-icon">✦</span>
                     </div>
                 </div>
-
                 <div class="love-message">
                     <p>
                         Desde que nuestros caminos se cruzaron, 
@@ -77,7 +71,6 @@
                         Con todo nuestro amor
                     </div>
                 </div>
-
                 <div class="details-section">
                     <h2 class="section-title">La Ceremonia</h2>
                     <div class="date-highlight">
@@ -86,7 +79,6 @@
                         <div class="time">A las 16:00 horas</div>
                     </div>
                 </div>
-
                 <div class="location-section">
                     <h2 class="section-title">Ubicación</h2>
                     <div class="location-card">
@@ -101,12 +93,10 @@
                         <i class="fas fa-map-marker-alt"></i> Ver ubicación
                     </a>
                 </div>
-
                 <!-- Divisor decorativo -->
                 <div class="section-divider">
                     <span>❦</span>
                 </div>
-
                 <!-- Cuenta Regresiva -->
                 <div class="countdown-section">
                     <h2 class="section-title" style="font-size: 1.2rem;">Faltan</h2>
@@ -129,12 +119,10 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Divisor decorativo -->
                 <div class="section-divider">
                     <span>❦</span>
                 </div>
-
                 <!-- Código de Vestimenta -->
                 <div class="dress-code">
                     <div class="dress-code-title">
@@ -144,12 +132,10 @@
                         Traje formal. Se solicita no usar color blanco para no opacar a la novia.
                     </div>
                 </div>
-
                 <!-- Divisor decorativo -->
                 <div class="section-divider">
                     <span>❦</span>
                 </div>
-
                 <!-- Botones secundarios en modales -->
                 <div class="main-menu">
                     <button class="menu-btn" onclick="openModal('modal-regalos')">
@@ -164,13 +150,12 @@
                 </div>
             </div>
         </section>
-
         <!-- MODALES -->
         
         <!-- Modal Fotos -->
         <div class="modal-overlay" id="modal-fotos">
             <div class="modal-content">
-                <button class="modal-close" onclick="closeModal('modal-fotos')">&times;</button>
+                <button class="modal-close" onclick="closeModal('modal-fotos')" aria-label="Cerrar modal de fotos">×</button>
                 <div class="modal-body">
                     <h2><i class="fas fa-camera-retro"></i> Comparte tus Recuerdos</h2>
                     <p>¡Comparte las fotos que tomes en nuestra boda!</p>
@@ -180,11 +165,10 @@
                 </div>
             </div>
         </div>
-
         <!-- Modal Regalos -->
         <div class="modal-overlay" id="modal-regalos">
             <div class="modal-content">
-                <button class="modal-close" onclick="closeModal('modal-regalos')">&times;</button>
+                <button class="modal-close" onclick="closeModal('modal-regalos')" aria-label="Cerrar modal de regalos">×</button>
                 <div class="modal-body">
                     <h2><i class="fas fa-gift"></i> Regalos</h2>
                     <p>Tu presencia en nuestro día es el mejor regalo. Si deseas obsequiarnos un detalle, puedes hacerlo:</p>
@@ -204,27 +188,25 @@
                 </div>
             </div>
         </div>
-
         <!-- Modal Canción -->
         <div class="modal-overlay" id="modal-cancion">
             <div class="modal-content">
-                <button class="modal-close" onclick="closeModal('modal-cancion')">&times;</button>
+                <button class="modal-close" onclick="closeModal('modal-cancion')" aria-label="Cerrar modal de canción">×</button>
                 <div class="modal-body">
                     <h2><i class="fas fa-music"></i> ¿Qué canción no puede faltar?</h2>
                     <p>Ayúdanos a crear la playlist perfecta para nuestra fiesta. ¡Dinos qué canción crees que no puede faltar!</p>
                     <input type="text" id="songSuggestion2" placeholder="Escribe el nombre de la canción y el artista" 
-                           style="width: 100%; padding: 10px; border: 1px solid var(--vintage-sepia); border-radius: 4px; font-family: 'Cormorant Garamond', serif; font-size: 1rem; margin-top: 15px; background: var(--input-bg); color: var(--text-primary);">
+                            style="width: 100%; padding: 10px; border: 1px solid var(--vintage-sepia); border-radius: 4px; font-family: 'Cormorant Garamond', serif; font-size: 1rem; margin-top: 15px; background: var(--input-bg); color: var(--text-primary);">
                     <button onclick="sendSongSuggestion2()" style="margin-top: 10px; padding: 10px 20px; background: var(--vintage-brown); color: var(--vintage-cream); border: none; border-radius: 4px; cursor: pointer; font-family: 'Cormorant Garamond', serif;">
                         <i class="fas fa-paper-plane"></i> Enviar sugerencia
                     </button>
                 </div>
             </div>
         </div>
-
         <!-- Modal Confirmar -->
         <div class="modal-overlay" id="modal-confirmar">
             <div class="modal-content">
-                <button class="modal-close" onclick="closeModal('modal-confirmar')">&times;</button>
+                <button class="modal-close" onclick="closeModal('modal-confirmar')" aria-label="Cerrar modal de confirmación">×</button>
                 <div class="modal-body">
                     <h2><i class="fab fa-whatsapp"></i> Confirmación</h2>
                     <p>Tu presencia es muy importante para nosotros.<br>Por favor, confirmarnos antes del 15 de Diciembre de 2035</p>
@@ -245,12 +227,10 @@
                 </div>
             </div>
         </div>
-
         <!-- INVITATION SECTION (Hidden - keeping for reference) -->
         <!-- REMOVED FOR NEW MODAL DESIGN -->
                     </div>
                 </div>
-
                 <div class="love-message">
                     <p>
                         Desde que nuestros caminos se cruzaron, 
@@ -266,7 +246,6 @@
                         Con todo nuestro amor
                     </div>
                 </div>
-
                 <div class="footer">
                     <p class="footer-text">
                         "El amor es la fuerza más noble del universo.<br>
@@ -290,7 +269,7 @@
         <audio id="backgroundMusic" preload="auto">
             <source src="assets/media/musica-boda.mp3" type="audio/mpeg">
         </audio>
-
+        
         <!-- PHOTOS SECTION -->
         <section class="photos-section">
             <div class="photos-header">
@@ -321,19 +300,19 @@
             </p>
         </section>
     </div>
-
+    
     <!-- Loading Overlay -->
     <div class="loading-overlay" id="loadingOverlay">
         <div class="spinner"></div>
         <p class="loading-text">Subiendo foto...</p>
     </div>
-
+    
     <!-- Toast -->
     <div class="toast" id="toast"></div>
-
+    
     <!-- Photo Modal -->
     <div class="photo-modal" id="photoModal" onclick="closePhotoModal()">
-        <button class="close-photo-modal" onclick="event.stopPropagation(); closePhotoModal()">
+        <button class="close-photo-modal" onclick="event.stopPropagation(); closePhotoModal()" aria-label="Cerrar vista ampliada de foto">
             <i class="fas fa-times"></i>
         </button>
         <button class="download-photo-modal" onclick="event.stopPropagation(); downloadCurrentPhoto()">
@@ -341,7 +320,7 @@
         </button>
         <img id="modalImage" src="" alt="Foto ampliada">
     </div>
-
+    
     <script>
         // ====== THEME TOGGLE ======
         function toggleTheme() {
@@ -357,7 +336,6 @@
                 localStorage.setItem('boda-theme', 'light');
             }
         }
-
         // Load saved theme
         (function() {
             const savedTheme = localStorage.getItem('boda-theme');
@@ -365,7 +343,6 @@
                 document.documentElement.setAttribute('data-theme', 'dark');
             }
         })();
-
         // ====== MUSIC PLAYER ======
         let isMusicPlaying = false;
         const music = document.getElementById('backgroundMusic');
@@ -420,14 +397,12 @@
                 music.play();
             });
         }
-
         // ====== PHOTOS - Using Local Storage ======
         // To enable cloud storage, add Supabase library and configure
         
         // Photo handling
         let photos = [];
         let isUploading = false;
-
         // Send song suggestion via WhatsApp
         function sendSongSuggestion() {
             const song = document.getElementById('songSuggestion').value.trim();
@@ -438,7 +413,6 @@
             const message = encodeURIComponent('Sugerencia de canción para la boda: ' + song);
             window.open('https://wa.me/56966529597?text=' + message, '_blank');
         }
-
         // Send song suggestion from modal
         function sendSongSuggestion2() {
             const song = document.getElementById('songSuggestion2').value.trim();
@@ -451,18 +425,15 @@
             document.getElementById('songSuggestion2').value = '';
             showToast('¡Gracias por tu sugerencia!', 'success');
         }
-
         // Modal functions
         function openModal(modalId) {
             document.getElementById(modalId).classList.add('active');
             document.body.style.overflow = 'hidden';
         }
-
         function closeModal(modalId) {
             document.getElementById(modalId).classList.remove('active');
             document.body.style.overflow = '';
         }
-
         // Close modal when clicking outside
         document.querySelectorAll('.modal-overlay').forEach(modal => {
             modal.addEventListener('click', function(e) {
@@ -472,7 +443,6 @@
                 }
             });
         });
-
         // Close modal with Escape key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
@@ -482,7 +452,6 @@
                 });
             }
         });
-
         // Countdown Timer
         const weddingDate = new Date('December 30, 2035 16:00:00').getTime();
         
@@ -508,7 +477,6 @@
         
         setInterval(updateCountdown, 1000);
         updateCountdown();
-
         // Show toast notification
         function showToast(message, type = 'info') {
             const toast = document.getElementById('toast');
@@ -518,18 +486,15 @@
             setTimeout(() => toast.classList.add('show'), 10);
             setTimeout(() => toast.classList.remove('show'), 3000);
         }
-
         // Show/hide loading
         function showLoading(message = 'Subiendo foto...') {
             const overlay = document.getElementById('loadingOverlay');
             overlay.querySelector('.loading-text').textContent = message;
             overlay.classList.add('active');
         }
-
         function hideLoading() {
             document.getElementById('loadingOverlay').classList.remove('active');
         }
-
         // Load photos from localStorage
         async function loadPhotos() {
             try {
@@ -545,12 +510,10 @@
             
             renderPhotos();
         }
-
         // Save to localStorage as backup
         function savePhotosLocal() {
             localStorage.setItem('bodaPhotos', JSON.stringify(photos));
         }
-
         // Handle photo upload - local storage only
         async function handlePhotoUpload(event) {
             console.log('Upload triggered', event);
@@ -563,10 +526,8 @@
                 showToast('No se seleccionó ninguna foto', 'error');
                 return;
             }
-
             isUploading = true;
             document.getElementById('uploadBtn').disabled = true;
-
             try {
                 for (const file of Array.from(files)) {
                     if (file.type.startsWith('image/')) {
@@ -605,7 +566,6 @@
                 event.target.value = '';
             }
         }
-
         // Render photos
         function renderPhotos() {
             const grid = document.getElementById('photosGrid');
@@ -642,7 +602,6 @@
                 grid.appendChild(item);
             });
         }
-
         // View photo full screen
         let currentPhotoSrc = '';
         function viewPhoto(imageSrc) {
@@ -653,7 +612,6 @@
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
-
         // Download current photo
         function downloadCurrentPhoto() {
             if (!currentPhotoSrc) return;
@@ -666,7 +624,6 @@
             document.body.removeChild(link);
             showToast('Foto descargada', 'success');
         }
-
         // Download photo from grid
         function downloadPhoto(imageSrc) {
             const link = document.createElement('a');
@@ -677,26 +634,22 @@
             document.body.removeChild(link);
             showToast('Foto descargada', 'success');
         }
-
         // Close photo modal
         function closePhotoModal() {
             const modal = document.getElementById('photoModal');
             modal.classList.remove('active');
             document.body.style.overflow = '';
         }
-
         // Close on escape
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 closePhotoModal();
             }
         });
-
         // Initialize
         document.addEventListener('DOMContentLoaded', async () => {
             await loadPhotos();
         });
-
         // Make functions globally accessible for HTML events
         window.handlePhotoUpload = handlePhotoUpload;
         window.viewPhoto = viewPhoto;
